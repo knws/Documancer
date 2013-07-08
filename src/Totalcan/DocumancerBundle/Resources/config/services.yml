@@ -1,0 +1,7 @@
+parameters:
+#    totalcan_documancer.example.class: Totalcan\DocumancerBundle\Example
+
+services:
+#    totalcan_documancer.example:
+#        class: %totalcan_documancer.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

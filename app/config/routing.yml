@@ -1,0 +1,4 @@
+totalcan_documancer:
+    resource: "@TotalcanDocumancerBundle/Resources/config/routing.yml"
+    prefix:   /
+
