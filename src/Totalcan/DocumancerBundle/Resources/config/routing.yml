@@ -1,3 +1,6 @@
 totalcan_documancer_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: TotalcanDocumancerBundle:Default:index }
+totalcan_documancer_image:
+    pattern:  /image/{name}
+    defaults: { _controller: TotalcanDocumancerBundle:Default:image }
