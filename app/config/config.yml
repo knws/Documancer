@@ -67,8 +67,9 @@ knp_snappy:
     pdf:
         enabled:    true
         binary:     /usr/bin/wkhtmltopdf
-        options:    []
+        options:
+                 - { name: disable-smart-shrinking, value:  0}
     image:
         enabled:    true
         binary:     /usr/bin/wkhtmltoimage
-        options:    []
+        options:    []  

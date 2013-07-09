@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% block head %}
+  <title>{% block title %}Документ{% endblock %}</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="{{ asset('bundles/acmedemo/css/demo.css') }}" />
+  <link href="{{ asset('bundles/totalcandocumancer/css/bootstrap-responsive.min.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ asset('bundles/totalcandocumancer/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+{% endblock %}
+</head>
+<body>
+{% block body %}
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-message">
+        <em>Notice</em>: {{ flashMessage }}
+    </div>
+{% endfor %}
+{% block navigation %}{% include "TotalcanDocumancerBundle::navigation.html.twig" %}{% endblock %}
+<br>
+<section>
+{% block content %}{% endblock %}
+</section>
+<footer>
+{% block footer %}
+<div class="footer">
+  <div>
+    <p>{{ "now"|date("Y") }}</p>
+  </div>
+</div>
+{% endblock %}
+</footer>
+<script src="{{ asset('bundles/totalcandocumancer/js/jquery-2.0.3.min.js') }}"></script>
+<script src="{{ asset('bundles/totalcandocumancer/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/totalcandocumancer/js/app.js') }}"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,1 +1,6 @@
-Hello {{ name }}!
+{% extends "TotalcanDocumancerBundle::layout.html.twig" %}
+{% block title %}{{title}} — {{ parent() }}{% endblock %}
+{% block content %}
+Hello, {{name}}!
+
+{% endblock %}

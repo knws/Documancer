@@ -9,13 +9,14 @@ class DocumentController extends Controller
 {
     public function indexAction($name)
     {
-        return $this->render('TotalcanDocumancerBundle:Document:index.html.twig', array('name' => $name));
+        return $this->render('TotalcanDocumancerBundle:Document:index.html.twig', array('name' => $name, 'title' => $name) );
     }
 
     public function imageAction($name)
     {
         $html = $this->renderView('TotalcanDocumancerBundle:Document:index.html.twig', array(
-            'name'  => $name
+            'name'  => $name,
+            'title' => $name
         ));
 
         return new Response(
@@ -30,8 +31,9 @@ class DocumentController extends Controller
 
     public function templateAction($name)
     {
-        $html = $this->renderView('MyBundle:Foo:bar.html.twig', array(
-            'some'  => $vars
+        $html = $this->renderView('TotalcanDocumancerBundle:Document:index.html.twig', array(
+            'name'  => $name,
+            'title' => $name
         ));
 
         return new Response(
@@ -46,7 +48,7 @@ class DocumentController extends Controller
 
     public function urlAction($name)
     {
-        //$pageUrl = $this->generateUrl('totalcan_documancer_image', array('name' => $name), true);
+        $pageUrl = $this->generateUrl('totalcan_documancer_homepage', array('name' => $name), true);
 
         return new Response(
             $this->get('knp_snappy.pdf')->getOutput($pageUrl),
