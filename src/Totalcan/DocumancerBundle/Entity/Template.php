@@ -3,6 +3,7 @@
 namespace Totalcan\DocumancerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Template
@@ -22,8 +23,9 @@ class Template
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="templates")
-     * @ORM\JoinColumn(name="userId", referencedColumnName="userId")
+     * @var integer
+     *
+     * @ORM\Column(name="userId", type="integer")
      */
     private $userId;
 
@@ -55,6 +57,15 @@ class Template
      */
     private $date;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="templateId")
+     */
+    protected $documents;
+
+    public function __construct()
+    {
+        $this->documents = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -64,6 +75,29 @@ class Template
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     * @return Template
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->userId;
     }
 
     /**
@@ -158,27 +192,36 @@ class Template
         return $this->date;
     }
 
-
     /**
-     * Set userId
+     * Add documents
      *
-     * @param \Totalcan\DocumancerBundle\Entity\User $userId
+     * @param \Totalcan\DocumancerBundle\Entity\Document $documents
      * @return Template
      */
-    public function setUserId(\Totalcan\DocumancerBundle\Entity\User $userId = null)
+    public function addDocument(\Totalcan\DocumancerBundle\Entity\Document $documents)
     {
-        $this->userId = $userId;
+        $this->documents[] = $documents;
     
         return $this;
     }
 
     /**
-     * Get userId
+     * Remove documents
      *
-     * @return \Totalcan\DocumancerBundle\Entity\User 
+     * @param \Totalcan\DocumancerBundle\Entity\Document $documents
      */
-    public function getUserId()
+    public function removeDocument(\Totalcan\DocumancerBundle\Entity\Document $documents)
     {
-        return $this->userId;
+        $this->documents->removeElement($documents);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
     }
 }

@@ -23,23 +23,27 @@ class Document
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="documents")
-     * @ORM\JoinColumn(name="userId", referencedColumnName="userId")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="id")
      */
     private $userId;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="templateDesignId", type="integer")
+     * @ORM\ManyToOne(targetEntity="Design", inversedBy="documents")
+     * @ORM\JoinColumn(name="designId", referencedColumnName="id")
      */
-    private $templateDesignId;
+    private $designId;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="templateId", type="integer")
+     * @ORM\ManyToOne(targetEntity="Template", inversedBy="documents")
+     * @ORM\JoinColumn(name="templateId", referencedColumnName="id")
      */
     private $templateId;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="documents")
+     * @ORM\JoinColumn(name="clientId", referencedColumnName="id")
+     */
+    private $clientId;
 
     /**
      * @var string
@@ -64,52 +68,6 @@ class Document
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set templateDesignId
-     *
-     * @param integer $templateDesignId
-     * @return Document
-     */
-    public function setTemplateDesignId($templateDesignId)
-    {
-        $this->templateDesignId = $templateDesignId;
-
-        return $this;
-    }
-
-    /**
-     * Get templateDesignId
-     *
-     * @return integer
-     */
-    public function getTemplateDesignId()
-    {
-        return $this->templateDesignId;
-    }
-
-    /**
-     * Set templateId
-     *
-     * @param integer $templateId
-     * @return Document
-     */
-    public function setTemplateId($templateId)
-    {
-        $this->templateId = $templateId;
-
-        return $this;
-    }
-
-    /**
-     * Get templateId
-     *
-     * @return integer
-     */
-    public function getTemplateId()
-    {
-        return $this->templateId;
     }
 
     /**
@@ -159,6 +117,29 @@ class Document
     }
 
     /**
+     * Set templateId
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Template $templateId
+     * @return Document
+     */
+    public function setTemplateId(\Totalcan\DocumancerBundle\Entity\Template $templateId = null)
+    {
+        $this->templateId = $templateId;
+
+        return $this;
+    }
+
+    /**
+     * Get templateId
+     *
+     * @return \Totalcan\DocumancerBundle\Entity\Template
+     */
+    public function getTemplateId()
+    {
+        return $this->templateId;
+    }
+
+    /**
      * Set userId
      *
      * @param \Totalcan\DocumancerBundle\Entity\User $userId
@@ -179,5 +160,51 @@ class Document
     public function getUserId()
     {
         return $this->userId;
+    }
+
+    /**
+     * Set designId
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Design $designId
+     * @return Document
+     */
+    public function setDesignId(\Totalcan\DocumancerBundle\Entity\Design $designId = null)
+    {
+        $this->designId = $designId;
+    
+        return $this;
+    }
+
+    /**
+     * Get designId
+     *
+     * @return \Totalcan\DocumancerBundle\Entity\Design 
+     */
+    public function getDesignId()
+    {
+        return $this->designId;
+    }
+
+    /**
+     * Set clientId
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Client $clientId
+     * @return Document
+     */
+    public function setClientId(\Totalcan\DocumancerBundle\Entity\Client $clientId = null)
+    {
+        $this->clientId = $clientId;
+    
+        return $this;
+    }
+
+    /**
+     * Get clientId
+     *
+     * @return \Totalcan\DocumancerBundle\Entity\Client 
+     */
+    public function getClientId()
+    {
+        return $this->clientId;
     }
 }

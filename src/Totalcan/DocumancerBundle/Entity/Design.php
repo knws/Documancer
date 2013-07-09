@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Client
+ * Design
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Totalcan\DocumancerBundle\Entity\ClientRepository")
+ * @ORM\Entity(repositoryClass="Totalcan\DocumancerBundle\Entity\DesignRepository")
  */
-class Client
+class Design
 {
     /**
      * @var integer
@@ -32,9 +32,23 @@ class Client
     /**
      * @var string
      *
+     * @ORM\Column(name="design", type="text")
+     */
+    private $design;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="variables", type="text")
      */
     private $variables;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
 
     /**
      * @var \DateTime
@@ -44,7 +58,7 @@ class Client
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity="Document", mappedBy="clientId")
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="designId")
      */
     protected $documents;
 
@@ -52,6 +66,7 @@ class Client
     {
         $this->documents = new ArrayCollection();
     }
+
     /**
      * Get id
      *
@@ -66,7 +81,7 @@ class Client
      * Set userId
      *
      * @param integer $userId
-     * @return Client
+     * @return Design
      */
     public function setUserId($userId)
     {
@@ -86,10 +101,33 @@ class Client
     }
 
     /**
+     * Set design
+     *
+     * @param string $design
+     * @return Design
+     */
+    public function setDesign($design)
+    {
+        $this->design = $design;
+
+        return $this;
+    }
+
+    /**
+     * Get design
+     *
+     * @return string
+     */
+    public function getDesign()
+    {
+        return $this->design;
+    }
+
+    /**
      * Set variables
      *
      * @param string $variables
-     * @return Client
+     * @return Design
      */
     public function setVariables($variables)
     {
@@ -109,10 +147,33 @@ class Client
     }
 
     /**
+     * Set title
+     *
+     * @param string $title
+     * @return Design
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * Set date
      *
      * @param \DateTime $date
-     * @return Client
+     * @return Design
      */
     public function setDate($date)
     {
@@ -135,7 +196,7 @@ class Client
      * Add documents
      *
      * @param \Totalcan\DocumancerBundle\Entity\Document $documents
-     * @return Client
+     * @return Design
      */
     public function addDocument(\Totalcan\DocumancerBundle\Entity\Document $documents)
     {
