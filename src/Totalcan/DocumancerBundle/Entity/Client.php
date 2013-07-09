@@ -23,9 +23,8 @@ class Client
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="userId", type="integer")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="clients")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="id")
      */
     private $userId;
 
@@ -60,29 +59,6 @@ class Client
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return Client
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return integer
-     */
-    public function getUserId()
-    {
-        return $this->userId;
     }
 
     /**
@@ -140,7 +116,7 @@ class Client
     public function addDocument(\Totalcan\DocumancerBundle\Entity\Document $documents)
     {
         $this->documents[] = $documents;
-    
+
         return $this;
     }
 
@@ -157,10 +133,33 @@ class Client
     /**
      * Get documents
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDocuments()
     {
         return $this->documents;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\User $userId
+     * @return Client
+     */
+    public function setUserId(\Totalcan\DocumancerBundle\Entity\User $userId = null)
+    {
+        $this->userId = $userId;
+    
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return \Totalcan\DocumancerBundle\Entity\User 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
     }
 }

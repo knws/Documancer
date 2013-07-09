@@ -41,9 +41,27 @@ class User
      */
     protected $documents;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Template", mappedBy="userId")
+     */
+    protected $templates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="userId")
+     */
+    protected $clients;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Design", mappedBy="userId")
+     */
+    protected $designs;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
+        $this->templates = new ArrayCollection();
+        $this->designs = new ArrayCollection();
+        $this->clients = new ArrayCollection();
     }
 
     /**
@@ -111,7 +129,7 @@ class User
     public function addDocument(\Totalcan\DocumancerBundle\Entity\Document $documents)
     {
         $this->documents[] = $documents;
-    
+
         return $this;
     }
 
@@ -128,10 +146,109 @@ class User
     /**
      * Get documents
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDocuments()
     {
         return $this->documents;
+    }
+
+    /**
+     * Add templates
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Template $templates
+     * @return User
+     */
+    public function addTemplate(\Totalcan\DocumancerBundle\Entity\Template $templates)
+    {
+        $this->templates[] = $templates;
+    
+        return $this;
+    }
+
+    /**
+     * Remove templates
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Template $templates
+     */
+    public function removeTemplate(\Totalcan\DocumancerBundle\Entity\Template $templates)
+    {
+        $this->templates->removeElement($templates);
+    }
+
+    /**
+     * Get templates
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTemplates()
+    {
+        return $this->templates;
+    }
+
+    /**
+     * Add clients
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Client $clients
+     * @return User
+     */
+    public function addClient(\Totalcan\DocumancerBundle\Entity\Client $clients)
+    {
+        $this->clients[] = $clients;
+    
+        return $this;
+    }
+
+    /**
+     * Remove clients
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Client $clients
+     */
+    public function removeClient(\Totalcan\DocumancerBundle\Entity\Client $clients)
+    {
+        $this->clients->removeElement($clients);
+    }
+
+    /**
+     * Get clients
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getClients()
+    {
+        return $this->clients;
+    }
+
+    /**
+     * Add designs
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Design $designs
+     * @return User
+     */
+    public function addDesign(\Totalcan\DocumancerBundle\Entity\Design $designs)
+    {
+        $this->designs[] = $designs;
+    
+        return $this;
+    }
+
+    /**
+     * Remove designs
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Design $designs
+     */
+    public function removeDesign(\Totalcan\DocumancerBundle\Entity\Design $designs)
+    {
+        $this->designs->removeElement($designs);
+    }
+
+    /**
+     * Get designs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDesigns()
+    {
+        return $this->designs;
     }
 }
