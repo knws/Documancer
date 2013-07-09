@@ -10,3 +10,9 @@ totalcan_documancer_template:
 totalcan_documancer_url:
     pattern:  /url/{name}
     defaults: { _controller: TotalcanDocumancerBundle:Document:url }
+totalcan_documancer_entity:
+    pattern:  /entity
+    defaults: { _controller: TotalcanDocumancerBundle:Document:entity }
+totalcan_documancer_new_user:
+    pattern:  /new/user
+    defaults: { _controller: TotalcanDocumancerBundle:Document:new }

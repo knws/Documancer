@@ -5,6 +5,15 @@ namespace Totalcan\DocumancerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
+use Totalcan\DocumancerBundle\Entity\Document;
+use Totalcan\DocumancerBundle\Entity\Template;
+use Totalcan\DocumancerBundle\Entity\Client;
+use Totalcan\DocumancerBundle\Entity\Design;
+use Totalcan\DocumancerBundle\Entity\User;
+
+use Totalcan\DocumancerBundle\Form\UserType;
+use Totalcan\DocumancerBundle\Form\ClientType;
+
 class DocumentController extends Controller
 {
     public function indexAction($name)
@@ -58,6 +67,73 @@ class DocumentController extends Controller
                 'Content-Disposition'   => 'attachment; filename="file.pdf"'
             )
         );
+    }
+
+    public function entityAction()
+    {
+        $user = new User();
+        $user->setVariables('Test user');
+        $user->setDate(new \DateTime());
+
+        $client = new Client();
+        $client->setVariables('Test client');
+        $client->setDate(new \DateTime());
+        $client->setUserId($user);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->persist($client);
+        $em->flush();
+
+        return new Response(
+            'Created user id: '.$user->getId().' and client id: '.$client->getId()
+        );
+    }
+
+    public function newAction($_route)
+    {
+//        $user = new User();
+//        $form = $this->createForm(new UserType(), $user);
+//
+//        $request = $this->getRequest();
+//        if ($request->getMethod() == 'POST') {
+//            $form->handleRequest($request);
+//
+//            if ($form->isValid()) {
+//
+//                $em = $this->getDoctrine()
+//                           ->getEntityManager();
+//                $em->persist($user);
+//                $em->flush();
+//
+//                return $this->redirect($this->generateUrl('totalcan_documancer_new_user'));
+//            }
+//        }
+//
+//        return $this->render('TotalcanDocumancerBundle:Document:new.html.twig', array(
+//            'form' => $form->createView()
+//       ));
+        $user = new Client();
+        $form = $this->createForm(new ClientType(), $user);
+
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+
+                $em = $this->getDoctrine()
+                           ->getEntityManager();
+                $em->persist($user);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('totalcan_documancer_new_user'));
+            }
+        }
+
+        return $this->render('TotalcanDocumancerBundle:Document:new.html.twig', array(
+            'form' => $form->createView()
+       ));
     }
 }
 
