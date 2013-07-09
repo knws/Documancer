@@ -22,9 +22,8 @@ class TemplateDesign
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="userId", type="integer")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="templateDesigns")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="userId")
      */
     private $userId;
 
@@ -58,29 +57,6 @@ class TemplateDesign
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return TemplateDesign
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return integer
-     */
-    public function getUserId()
-    {
-        return $this->userId;
     }
 
     /**
@@ -150,5 +126,28 @@ class TemplateDesign
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\User $userId
+     * @return TemplateDesign
+     */
+    public function setUserId(\Totalcan\DocumancerBundle\Entity\User $userId = null)
+    {
+        $this->userId = $userId;
+    
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return \Totalcan\DocumancerBundle\Entity\User 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
     }
 }

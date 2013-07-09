@@ -36,12 +36,10 @@ class Client
     private $date;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="userId", type="integer")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="clients")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="userId")
      */
     private $userId;
-
 
     /**
      * Get id
@@ -102,20 +100,20 @@ class Client
     /**
      * Set userId
      *
-     * @param integer $userId
-     * @return TemplateDesign
+     * @param \Totalcan\DocumancerBundle\Entity\User $userId
+     * @return Client
      */
-    public function setUserId($userId)
+    public function setUserId(\Totalcan\DocumancerBundle\Entity\User $userId = null)
     {
         $this->userId = $userId;
-
+    
         return $this;
     }
 
     /**
      * Get userId
      *
-     * @return integer
+     * @return \Totalcan\DocumancerBundle\Entity\User 
      */
     public function getUserId()
     {

@@ -22,9 +22,8 @@ class Document
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="userId", type="integer")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="documents")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="userId")
      */
     private $userId;
 
@@ -65,29 +64,6 @@ class Document
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return Document
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return integer
-     */
-    public function getUserId()
-    {
-        return $this->userId;
     }
 
     /**
@@ -180,5 +156,28 @@ class Document
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\User $userId
+     * @return Document
+     */
+    public function setUserId(\Totalcan\DocumancerBundle\Entity\User $userId = null)
+    {
+        $this->userId = $userId;
+    
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return \Totalcan\DocumancerBundle\Entity\User 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
     }
 }
