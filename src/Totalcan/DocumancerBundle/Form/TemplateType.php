@@ -6,27 +6,28 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ClientType extends AbstractType
+class TemplateType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('variables', 'text', array(
-                'label' => 'Переменные'))
+            ->add('title')
+            ->add('template')
+            ->add('variables')
             ->add('date')
-            ->add('userId', 'entity', array('class'=>'Totalcan\DocumancerBundle\Entity\User', 'property'=>'variables' ));
+            ->add('userId')
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Totalcan\DocumancerBundle\Entity\Client'
+            'data_class' => 'Totalcan\DocumancerBundle\Entity\Template'
         ));
     }
 
     public function getName()
     {
-        return 'totalcan_documancerbundle_clienttype';
+        return 'totalcan_documancerbundle_templatetype';
     }
 }

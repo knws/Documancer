@@ -18,8 +18,8 @@
 <div class="clients skills container_12">
     <h2 class="grid_12"></h2>
     <form action="{{ path('totalcan_documancer_new_user') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_row(form.variables, { 'attr': {'class':'span6','placeholder':'Заголовок'} }) }}
-        {{ form_row(form.date, {'attr': {'class':'span6', 'rows':'7', 'placeholder':''} }) }}
+        {{ form_row(form.variables, { 'attr': {'class':'input-xlarge','placeholder':''} }) }}
+        {{ form_row(form.date, {'attr': {'class':'span3'} }) }}
         {{ form_errors(form) }}
         {{ form_widget(form) }}
 
