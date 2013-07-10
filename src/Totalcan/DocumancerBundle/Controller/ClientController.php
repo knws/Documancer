@@ -7,8 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Totalcan\DocumancerBundle\Entity\Client;
 use Totalcan\DocumancerBundle\Entity\User;
 
-use Totalcan\DocumancerBundle\Entity\ClientType;
-use Totalcan\DocumancerBundle\Entity\UserType;
+use Totalcan\DocumancerBundle\Form\ClientType;
+use Totalcan\DocumancerBundle\Form\UserType;
 
 class ClientController extends Controller
 {

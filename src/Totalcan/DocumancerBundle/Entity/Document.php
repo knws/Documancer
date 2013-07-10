@@ -53,6 +53,20 @@ class Document
     private $variables;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="template", type="text")
+     */
+    private $template;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -148,14 +162,14 @@ class Document
     public function setUserId(\Totalcan\DocumancerBundle\Entity\User $userId = null)
     {
         $this->userId = $userId;
-    
+
         return $this;
     }
 
     /**
      * Get userId
      *
-     * @return \Totalcan\DocumancerBundle\Entity\User 
+     * @return \Totalcan\DocumancerBundle\Entity\User
      */
     public function getUserId()
     {
@@ -171,14 +185,14 @@ class Document
     public function setDesignId(\Totalcan\DocumancerBundle\Entity\Design $designId = null)
     {
         $this->designId = $designId;
-    
+
         return $this;
     }
 
     /**
      * Get designId
      *
-     * @return \Totalcan\DocumancerBundle\Entity\Design 
+     * @return \Totalcan\DocumancerBundle\Entity\Design
      */
     public function getDesignId()
     {
@@ -194,17 +208,63 @@ class Document
     public function setClientId(\Totalcan\DocumancerBundle\Entity\Client $clientId = null)
     {
         $this->clientId = $clientId;
-    
+
         return $this;
     }
 
     /**
      * Get clientId
      *
-     * @return \Totalcan\DocumancerBundle\Entity\Client 
+     * @return \Totalcan\DocumancerBundle\Entity\Client
      */
     public function getClientId()
     {
         return $this->clientId;
+    }
+
+    /**
+     * Set template
+     *
+     * @param string $template
+     * @return Document
+     */
+    public function setTemplate($template)
+    {
+        $this->template = $template;
+
+        return $this;
+    }
+
+    /**
+     * Get template
+     *
+     * @return string
+     */
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Document
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 }

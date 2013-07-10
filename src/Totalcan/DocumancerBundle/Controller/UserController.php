@@ -3,9 +3,9 @@
 namespace Totalcan\DocumancerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Totalcan\DocumancerBundle\Entity\User;
+use Totalcan\DocumancerBundle\Form\User;
 
-use Totalcan\DocumancerBundle\Entity\UserType;
+use Totalcan\DocumancerBundle\Form\UserType;
 
 class UserController extends Controller
 {

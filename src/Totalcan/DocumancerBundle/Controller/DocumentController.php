@@ -11,11 +11,11 @@ use Totalcan\DocumancerBundle\Entity\Client;
 use Totalcan\DocumancerBundle\Entity\Design;
 use Totalcan\DocumancerBundle\Entity\User;
 
-use Totalcan\DocumancerBundle\Entity\DocumentType;
-use Totalcan\DocumancerBundle\Entity\TemplateType;
-use Totalcan\DocumancerBundle\Entity\ClientType;
-use Totalcan\DocumancerBundle\Entity\DesignType;
-use Totalcan\DocumancerBundle\Entity\UserType;
+use Totalcan\DocumancerBundle\Form\DocumentType;
+use Totalcan\DocumancerBundle\Form\TemplateType;
+use Totalcan\DocumancerBundle\Form\ClientType;
+use Totalcan\DocumancerBundle\Form\DesignType;
+use Totalcan\DocumancerBundle\Form\UserType;
 
 class DocumentController extends Controller
 {
@@ -116,8 +116,9 @@ class DocumentController extends Controller
 //        return $this->render('TotalcanDocumancerBundle:Document:new.html.twig', array(
 //            'form' => $form->createView()
 //       ));
-        $user = new Client();
-        $form = $this->createForm(new ClientType(), $user);
+
+        $document = new Document();
+        $form = $this->createForm(new DocumentType(), $document);
 
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
@@ -127,7 +128,7 @@ class DocumentController extends Controller
 
                 $em = $this->getDoctrine()
                            ->getEntityManager();
-                $em->persist($user);
+                $em->persist($document);
                 $em->flush();
 
                 return $this->redirect($this->generateUrl('totalcan_documancer_new_user'));
@@ -137,6 +138,19 @@ class DocumentController extends Controller
         return $this->render('TotalcanDocumancerBundle:Document:new.html.twig', array(
             'form' => $form->createView()
        ));
+    }
+
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $documents = $em->getRepository('TotalcanDocumancerBundle:Document')->listAll();
+        for($i=0; $i<=sizeof($documents)-1; $i++) {
+            $d .= $documents[$i]->getVariables()."\n";
+        }
+
+        return new Response(
+            $d
+        );
     }
 }
 

@@ -13,22 +13,84 @@ totalcan_documancer_url:
 totalcan_documancer_entity:
     pattern:  /entity
     defaults: { _controller: TotalcanDocumancerBundle:Document:entity }
-totalcan_documancer_new_user:
-    pattern:  /new/user
+
+
+totalcan_documancer_document_list:
+    pattern:  /documancer/document/list
+    defaults: { _controller: TotalcanDocumancerBundle:Document:list }
+totalcan_documancer_document_new:
+    pattern:  /documancer/document/new
     defaults: { _controller: TotalcanDocumancerBundle:Document:new }
+totalcan_documancer_document_edit:
+    pattern:  /documancer/document/edit/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Document:edit }
+totalcan_documancer_document_delete:
+    pattern:  /documancer/document/delete/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Document:delete }
+totalcan_documancer_document_show:
+    pattern:  /documancer/document/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Document:show }
 
-totalcan_documancer_list_client:
-    pattern: /documancer/list/client
+totalcan_documancer_client_list:
+    pattern:  /documancer/client/list
     defaults: { _controller: TotalcanDocumancerBundle:Client:list }
+totalcan_documancer_client_new:
+    pattern:  /documancer/client/new
+    defaults: { _controller: TotalcanDocumancerBundle:Client:new }
+totalcan_documancer_client_edit:
+    pattern:  /documancer/client/edit/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Client:edit }
+totalcan_documancer_client_delete:
+    pattern:  /documancer/client/delete/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Client:delete }
+totalcan_documancer_client_show:
+    pattern:  /documancer/client/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Client:show }
 
-totalcan_documancer_list_design:
-    pattern: /documancer/list/design
+totalcan_documancer_design_list:
+    pattern:  /documancer/design/list
     defaults: { _controller: TotalcanDocumancerBundle:Design:list }
+totalcan_documancer_design_new:
+    pattern:  /documancer/design/new
+    defaults: { _controller: TotalcanDocumancerBundle:Design:new }
+totalcan_documancer_design_edit:
+    pattern:  /documancer/design/edit/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Design:edit }
+totalcan_documancer_design_delete:
+    pattern:  /documancer/design/delete/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Design:delete }
+totalcan_documancer_design_show:
+    pattern:  /documancer/design/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Design:show }
 
-totalcan_documancer_list_user:
-    pattern: /documancer/list/user
+totalcan_documancer_user_list:
+    pattern:  /documancer/user/list
     defaults: { _controller: TotalcanDocumancerBundle:User:list }
+totalcan_documancer_user_new:
+    pattern:  /documancer/user/new
+    defaults: { _controller: TotalcanDocumancerBundle:User:new }
+totalcan_documancer_user_edit:
+    pattern:  /documancer/user/edit/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:User:edit }
+totalcan_documancer_user_delete:
+    pattern:  /documancer/user/delete/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:User:delete }
+totalcan_documancer_user_show:
+    pattern:  /documancer/user/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:User:show }
 
-totalcan_documancer_list_template:
-    pattern: /documancer/list/template
+totalcan_documancer_template_list:
+    pattern:  /documancer/template/list
     defaults: { _controller: TotalcanDocumancerBundle:Template:list }
+totalcan_documancer_template_new:
+    pattern:  /documancer/template/new
+    defaults: { _controller: TotalcanDocumancerBundle:Template:new }
+totalcan_documancer_template_edit:
+    pattern:  /documancer/template/edit/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Template:edit }
+totalcan_documancer_template_delete:
+    pattern:  /documancer/template/delete/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Template:delete }
+totalcan_documancer_template_show:
+    pattern:  /documancer/template/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Template:show }

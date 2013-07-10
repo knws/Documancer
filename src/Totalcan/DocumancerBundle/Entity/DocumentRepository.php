@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class DocumentRepository extends EntityRepository
 {
+    public function listAll()
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('
+                SELECT d FROM TotalcanDocumancerBundle:Document d ORDER BY d.id DESC'
+            );
+
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
 }
