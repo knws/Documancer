@@ -16,3 +16,19 @@ totalcan_documancer_entity:
 totalcan_documancer_new_user:
     pattern:  /new/user
     defaults: { _controller: TotalcanDocumancerBundle:Document:new }
+
+totalcan_documancer_list_client:
+    pattern: /documancer/list/client
+    defaults: { _controller: TotalcanDocumancerBundle:Client:list }
+
+totalcan_documancer_list_design:
+    pattern: /documancer/list/design
+    defaults: { _controller: TotalcanDocumancerBundle:Design:list }
+
+totalcan_documancer_list_user:
+    pattern: /documancer/list/user
+    defaults: { _controller: TotalcanDocumancerBundle:User:list }
+
+totalcan_documancer_list_template:
+    pattern: /documancer/list/template
+    defaults: { _controller: TotalcanDocumancerBundle:Template:list }

@@ -11,8 +11,11 @@ use Totalcan\DocumancerBundle\Entity\Client;
 use Totalcan\DocumancerBundle\Entity\Design;
 use Totalcan\DocumancerBundle\Entity\User;
 
-use Totalcan\DocumancerBundle\Form\UserType;
-use Totalcan\DocumancerBundle\Form\ClientType;
+use Totalcan\DocumancerBundle\Entity\DocumentType;
+use Totalcan\DocumancerBundle\Entity\TemplateType;
+use Totalcan\DocumancerBundle\Entity\ClientType;
+use Totalcan\DocumancerBundle\Entity\DesignType;
+use Totalcan\DocumancerBundle\Entity\UserType;
 
 class DocumentController extends Controller
 {
