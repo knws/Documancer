@@ -93,8 +93,8 @@ class DocumentController extends Controller
         );
     }
 
-    public function newAction($_route)
-    {
+//    public function newAction($_route)
+//    {
 //        $user = new User();
 //        $form = $this->createForm(new UserType(), $user);
 //
@@ -116,7 +116,55 @@ class DocumentController extends Controller
 //        return $this->render('TotalcanDocumancerBundle:Document:new.html.twig', array(
 //            'form' => $form->createView()
 //       ));
+//        $document = new Document();
+//        $form = $this->createForm(new DocumentType(), $document);
+//
+//        $request = $this->getRequest();
+//        if ($request->getMethod() == 'POST') {
+//            $form->handleRequest($request);
+//
+//            if ($form->isValid()) {
+//
+//                $em = $this->getDoctrine()
+//                           ->getEntityManager();
+//                $em->persist($document);
+//                $em->flush();
+//
+//                return $this->redirect($this->generateUrl('totalcan_documancer_new_user'));
+//            }
+//        }
+//
+//        return $this->render('TotalcanDocumancerBundle:Document:new.html.twig', array(
+//            'form' => $form->createView()
+//       ));
+//    }
 
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $documents = $em->getRepository('TotalcanDocumancerBundle:Document')->findAll();
+
+        for($i=0; $i<=sizeof($documents)-1; $i++) {
+            $documentsArray[] = array(
+                'id' => $documents[$i]->getId(),
+                'variables' => $documents[$i]->getVariables(),
+                'template' => $documents[$i]->getTemplate(),
+                'date' => $documents[$i]->getDate(),
+                'userId' => $documents[$i]->getUserId()->getVariables(),
+                'designId' => $documents[$i]->getDesignId()->getTitle(),
+                'templateId' => $documents[$i]->getTemplateId()->getTitle(),
+                'clientId' => $documents[$i]->getClientId()->getVariables(),
+                'title' => $documents[$i]->getTitle()
+            );
+        }
+
+        return $this->render('TotalcanDocumancerBundle:Document:list.html.twig', array(
+            'documents' => $documentsArray
+       ));
+    }
+
+    public function newAction()
+    {
         $document = new Document();
         $form = $this->createForm(new DocumentType(), $document);
 
@@ -131,26 +179,13 @@ class DocumentController extends Controller
                 $em->persist($document);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('totalcan_documancer_new_user'));
+                return $this->redirect($this->generateUrl('totalcan_documancer_document_new'));
             }
         }
 
         return $this->render('TotalcanDocumancerBundle:Document:new.html.twig', array(
             'form' => $form->createView()
        ));
-    }
-
-    public function listAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $documents = $em->getRepository('TotalcanDocumancerBundle:Document')->listAll();
-        for($i=0; $i<=sizeof($documents)-1; $i++) {
-            $d .= $documents[$i]->getVariables()."\n";
-        }
-
-        return new Response(
-            $d
-        );
     }
 }
 
