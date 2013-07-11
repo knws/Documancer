@@ -104,7 +104,7 @@ class DocumentController extends Controller
 
     public function urlAction($name)
     {
-//        $pageUrl = $this->generateUrl('totalcan_documancer_homepage', array('name' => $name), true);
+//        $pageUrl = $this->generateUrl('homepage', array('name' => $name), true);
 
         return new Response(
             $this->get('knp_snappy.pdf')->getOutput('http://google.com'),
@@ -153,7 +153,7 @@ class DocumentController extends Controller
 //                $em->persist($user);
 //                $em->flush();
 //
-//                return $this->redirect($this->generateUrl('totalcan_documancer_new_user'));
+//                return $this->redirect($this->generateUrl('new_user'));
 //            }
 //        }
 //
@@ -174,7 +174,7 @@ class DocumentController extends Controller
 //                $em->persist($document);
 //                $em->flush();
 //
-//                return $this->redirect($this->generateUrl('totalcan_documancer_new_user'));
+//                return $this->redirect($this->generateUrl('new_user'));
 //            }
 //        }
 //
@@ -223,7 +223,7 @@ class DocumentController extends Controller
                 $em->persist($document);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('totalcan_documancer_document_new'));
+                return $this->redirect($this->generateUrl('document_new'));
             }
         }
 
@@ -250,7 +250,7 @@ class DocumentController extends Controller
                 $em->persist($document);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('totalcan_documancer_document_list'));
+                return $this->redirect($this->generateUrl('document_list'));
             }
         }
 

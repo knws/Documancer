@@ -1,8 +1,8 @@
 {% extends "TotalcanDocumancerBundle::layout.html.twig" %}
 
 {% block content %}
-<a class="btn btn-primary" href="{{ path('totalcan_documancer_document_list') }}">Back to list</a><br>
-<form class="form-horizontal"  action="{{ path('totalcan_documancer_document_edit', {'id': document.id}) }}" method="post" {{ form_enctype(form) }}>
+<a class="btn btn-primary" href="{{ path('document_list') }}">Back to list</a><br>
+<form class="form-horizontal"  action="{{ path('document_edit', {'id': document.id}) }}" method="post" {{ form_enctype(form) }}>
   <div class="control-group">
 
     {{ form_errors(form) }}

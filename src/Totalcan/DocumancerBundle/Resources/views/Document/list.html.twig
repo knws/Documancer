@@ -20,8 +20,8 @@
   {% for document in documents %}
     <tr>
         <td>{{document.id}}</td>
-        <td><a href="{{ path('totalcan_documancer_document_edit', {'id': document.id}) }}">{{document.title}}</a></td>
-        <td><a class="btn" href="{{ path('totalcan_documancer_document_pdf', {'id': document.id}) }}">pdf</a> <a class="btn" href="{{ path('totalcan_documancer_document_jpg', {'id': document.id}) }}">jpg</a></td>
+        <td><a href="{{ path('document_edit', {'id': document.id}) }}">{{document.title}}</a></td>
+        <td><a class="btn" href="{{ path('document_pdf', {'id': document.id}) }}">pdf</a> <a class="btn" href="{{ path('document_jpg', {'id': document.id}) }}">jpg</a></td>
         <td>{{document.date|date("Y m d")}}</td>
         <td>{{document.userId}}</td>
         <td>{{document.clientId}}</td>
@@ -30,4 +30,6 @@
     </tr>
   {% endfor %}
 </table>
+<br>
+<a class="btn btn-warning" href="{{ path("logout") }}">Logout</a>
 {% endblock %}

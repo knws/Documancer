@@ -2,6 +2,7 @@
 
 namespace Totalcan\DocumancerBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -55,6 +56,7 @@ class User
      * @ORM\OneToMany(targetEntity="Design", mappedBy="userId")
      */
     protected $designs;
+
 
     public function __construct()
     {
@@ -162,7 +164,7 @@ class User
     public function addTemplate(\Totalcan\DocumancerBundle\Entity\Template $templates)
     {
         $this->templates[] = $templates;
-    
+
         return $this;
     }
 
@@ -179,7 +181,7 @@ class User
     /**
      * Get templates
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTemplates()
     {
@@ -195,7 +197,7 @@ class User
     public function addClient(\Totalcan\DocumancerBundle\Entity\Client $clients)
     {
         $this->clients[] = $clients;
-    
+
         return $this;
     }
 
@@ -212,7 +214,7 @@ class User
     /**
      * Get clients
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getClients()
     {
@@ -228,7 +230,7 @@ class User
     public function addDesign(\Totalcan\DocumancerBundle\Entity\Design $designs)
     {
         $this->designs[] = $designs;
-    
+
         return $this;
     }
 
@@ -245,7 +247,7 @@ class User
     /**
      * Get designs
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDesigns()
     {

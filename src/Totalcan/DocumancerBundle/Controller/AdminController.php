@@ -34,4 +34,9 @@ class AdminController extends Controller
     {
         // The security layer will intercept this request
     }
+
+    public function indexAction()
+    {
+        return $this->render('TotalcanDocumancerBundle:Admin:index.html.twig');
+    }
 }

@@ -1,99 +1,109 @@
-totalcan_documancer_admin:
-    pattern:  /documancer/admin
+admin:
+    pattern:  /admin
     defaults: { _controller: TotalcanDocumancerBundle:Admin:index }
 
-totalcan_documancer_login:
-    pattern:  /documancer/login
+login:
+    pattern:  /login
     defaults: { _controller: TotalcanDocumancerBundle:Admin:login }
-totalcan_documancer_login_check:
-    pattern:  /documancer/login_check
+login_check:
+    pattern:  /login_check
     defaults: { _controller: TotalcanDocumancerBundle:Admin:securityCheck }
-totalcan_documancer_logout:
-    pattern:  /documancer/logout
+logout:
+    pattern:  /logout
     defaults: { _controller: TotalcanDocumancerBundle:Admin:logout }
 
-totalcan_documancer_document_list:
-    pattern:  /documancer/document/list
+document_list:
+    pattern:  /document/list
     defaults: { _controller: TotalcanDocumancerBundle:Document:list }
-totalcan_documancer_document_new:
-    pattern:  /documancer/document/new
+document_new:
+    pattern:  /document/new
     defaults: { _controller: TotalcanDocumancerBundle:Document:new }
-totalcan_documancer_document_edit:
-    pattern:  /documancer/document/edit/{id}
+document_edit:
+    pattern:  /document/edit/{id}
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Document:edit }
-totalcan_documancer_document_delete:
-    pattern:  /documancer/document/delete/{id}
+document_delete:
+    pattern:  /document/delete/{id}
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Document:delete }
-totalcan_documancer_document_show:
-    pattern:  /documancer/document/{id}
+document_show:
+    pattern:  /document/{id}
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Document:show }
-totalcan_documancer_document_pdf:
-    pattern:  /documancer/document/dl/{id}.pdf
+document_pdf:
+    pattern:  /document/dl/{id}.pdf
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Document:pdf }
-totalcan_documancer_document_jpg:
-    pattern:  /documancer/document/dl/{id}.jpg
+document_jpg:
+    pattern:  /document/dl/{id}.jpg
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Document:image }
 
-totalcan_documancer_client_list:
-    pattern:  /documancer/client/list
+client_list:
+    pattern:  /client/list
     defaults: { _controller: TotalcanDocumancerBundle:Client:list }
-totalcan_documancer_client_new:
-    pattern:  /documancer/client/new
+client_new:
+    pattern:  /client/new
     defaults: { _controller: TotalcanDocumancerBundle:Client:new }
-totalcan_documancer_client_edit:
-    pattern:  /documancer/client/edit/{id}
+client_edit:
+    pattern:  /client/edit/{id}
     defaults: { _controller: TotalcanDocumancerBundle:Client:edit }
-totalcan_documancer_client_delete:
-    pattern:  /documancer/client/delete/{id}
+client_delete:
+    pattern:  /client/delete/{id}
     defaults: { _controller: TotalcanDocumancerBundle:Client:delete }
-totalcan_documancer_client_show:
-    pattern:  /documancer/client/{id}
+client_show:
+    pattern:  /client/{id}
     defaults: { _controller: TotalcanDocumancerBundle:Client:show }
 
-totalcan_documancer_design_list:
-    pattern:  /documancer/design/list
+design_list:
+    pattern:  /design/list
     defaults: { _controller: TotalcanDocumancerBundle:Design:list }
-totalcan_documancer_design_new:
-    pattern:  /documancer/design/new
+design_new:
+    pattern:  /design/new
     defaults: { _controller: TotalcanDocumancerBundle:Design:new }
-totalcan_documancer_design_edit:
-    pattern:  /documancer/design/edit/{id}
+design_edit:
+    pattern:  /design/edit/{id}
     defaults: { _controller: TotalcanDocumancerBundle:Design:edit }
-totalcan_documancer_design_delete:
-    pattern:  /documancer/design/delete/{id}
+design_delete:
+    pattern:  /design/delete/{id}
     defaults: { _controller: TotalcanDocumancerBundle:Design:delete }
-totalcan_documancer_design_show:
-    pattern:  /documancer/design/{id}
+design_show:
+    pattern:  /design/{id}
     defaults: { _controller: TotalcanDocumancerBundle:Design:show }
 
-totalcan_documancer_user_list:
-    pattern:  /documancer/user/list
+user_list:
+    pattern:  /user/list
     defaults: { _controller: TotalcanDocumancerBundle:User:list }
-totalcan_documancer_user_new:
-    pattern:  /documancer/user/new
+user_new:
+    pattern:  /user/new
     defaults: { _controller: TotalcanDocumancerBundle:User:new }
-totalcan_documancer_user_edit:
-    pattern:  /documancer/user/edit/{id}
+user_edit:
+    pattern:  /user/edit/{id}
     defaults: { _controller: TotalcanDocumancerBundle:User:edit }
-totalcan_documancer_user_delete:
-    pattern:  /documancer/user/delete/{id}
+user_delete:
+    pattern:  /user/delete/{id}
     defaults: { _controller: TotalcanDocumancerBundle:User:delete }
-totalcan_documancer_user_show:
-    pattern:  /documancer/user/{id}
+user_show:
+    pattern:  /user/{id}
     defaults: { _controller: TotalcanDocumancerBundle:User:show }
 
-totalcan_documancer_template_list:
-    pattern:  /documancer/template/list
+template_list:
+    pattern:  /template/list
     defaults: { _controller: TotalcanDocumancerBundle:Template:list }
-totalcan_documancer_template_new:
-    pattern:  /documancer/template/new
+template_new:
+    pattern:  /template/new
     defaults: { _controller: TotalcanDocumancerBundle:Template:new }
-totalcan_documancer_template_edit:
-    pattern:  /documancer/template/edit/{id}
+template_edit:
+    pattern:  /template/edit/{id}
     defaults: { _controller: TotalcanDocumancerBundle:Template:edit }
-totalcan_documancer_template_delete:
-    pattern:  /documancer/template/delete/{id}
+template_delete:
+    pattern:  /template/delete/{id}
     defaults: { _controller: TotalcanDocumancerBundle:Template:delete }
-totalcan_documancer_template_show:
-    pattern:  /documancer/template/{id}
+template_show:
+    pattern:  /template/{id}
     defaults: { _controller: TotalcanDocumancerBundle:Template:show }

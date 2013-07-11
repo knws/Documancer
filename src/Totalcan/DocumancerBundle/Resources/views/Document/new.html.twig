@@ -1,7 +1,7 @@
 {% extends "TotalcanDocumancerBundle::layout.html.twig" %}
 
 {% block content %}
-<form class="form-horizontal"  action="{{ path('totalcan_documancer_document_new') }}" method="post" {{ form_enctype(form) }}>
+<form class="form-horizontal"  action="{{ path('document_new') }}" method="post" {{ form_enctype(form) }}>
   <div class="control-group">
 
     {{ form_errors(form) }}
