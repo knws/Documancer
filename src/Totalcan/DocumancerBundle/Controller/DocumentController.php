@@ -116,77 +116,15 @@ class DocumentController extends Controller
         );
     }
 
-    public function entityAction()
-    {
-        $user = new User();
-        $user->setVariables('Test user');
-        $user->setDate(new \DateTime());
-
-        $client = new Client();
-        $client->setVariables('Test client');
-        $client->setDate(new \DateTime());
-        $client->setUserId($user);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->persist($client);
-        $em->flush();
-
-        return new Response(
-            'Created user id: '.$user->getId().' and client id: '.$client->getId()
-        );
-    }
-
-//    public function newAction($_route)
-//    {
-//        $user = new User();
-//        $form = $this->createForm(new UserType(), $user);
-//
-//        $request = $this->getRequest();
-//        if ($request->getMethod() == 'POST') {
-//            $form->handleRequest($request);
-//
-//            if ($form->isValid()) {
-//
-//                $em = $this->getDoctrine()
-//                           ->getEntityManager();
-//                $em->persist($user);
-//                $em->flush();
-//
-//                return $this->redirect($this->generateUrl('new_user'));
-//            }
-//        }
-//
-//        return $this->render('TotalcanDocumancerBundle:Document:new.html.twig', array(
-//            'form' => $form->createView()
-//       ));
-//        $document = new Document();
-//        $form = $this->createForm(new DocumentType(), $document);
-//
-//        $request = $this->getRequest();
-//        if ($request->getMethod() == 'POST') {
-//            $form->handleRequest($request);
-//
-//            if ($form->isValid()) {
-//
-//                $em = $this->getDoctrine()
-//                           ->getEntityManager();
-//                $em->persist($document);
-//                $em->flush();
-//
-//                return $this->redirect($this->generateUrl('new_user'));
-//            }
-//        }
-//
-//        return $this->render('TotalcanDocumancerBundle:Document:new.html.twig', array(
-//            'form' => $form->createView()
-//       ));
-//    }
-
     public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $documents = $em->getRepository('TotalcanDocumancerBundle:Document')->findAll();
+        if (true === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $documents = $em->getRepository('TotalcanDocumancerBundle:Document')->findAll();
+        } else {
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $documents = $em->getRepository('TotalcanDocumancerBundle:Document')->findByUserId($usr->getId());
+        }
 
         for($i=0; $i<=sizeof($documents)-1; $i++) {
             $documentsArray[] = array(
@@ -237,8 +175,8 @@ class DocumentController extends Controller
         $em = $this->getDoctrine()->getManager();
         $document = $em->getRepository('TotalcanDocumancerBundle:Document')->find($id);
 
-        $form = $this->createForm(new DocumentType(), $document);
-
+        //$form = $this->createForm(new DocumentType(), $document);
+        $form = $this->createForm($this->get('form.type.document'), $document);
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);

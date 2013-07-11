@@ -1,0 +1,61 @@
+{% extends "TotalcanDocumancerBundle::layout.html.twig" %}
+
+{% block head %}
+{{ parent() }}
+<style>
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+</style>
+{% endblock %}
+
+{% block navigation %}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="{{ path('document_list')}}">Мои документы</a></li>
+              <li><a href="{{ path('template_list')}}">Шаблоны</a></li>
+              <li><a href="{{ path('design_list')}}">Дизайны</a></li>
+              <li><a href="{{ path('client_list')}}">Клиенты</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            {% if app.user.username is defined and app.user.username%}
+               <a href="#" class="btn">{{ app.user.username }}</a> <a class="btn btn-warning" href="{{ path("logout") }}">Logout</a>
+            {% else %}
+            <form class="navbar-form pull-right" action="{{ path("login_check") }}" method="post" id="login">
+              <input class="span2" type="text" placeholder="Email" id="username" name="_username" value="" >
+              <input class="span2" type="password" placeholder="Password" id="password" name="_password" >
+              <button type="submit" class="btn">Sign in</button>
+            </form>
+            {% endif %}
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+    {% if error is defined and error%}
+        <div class="error">{{ error.message }}</div>
+    {% endif %}
+    </div>
+{% endblock %}

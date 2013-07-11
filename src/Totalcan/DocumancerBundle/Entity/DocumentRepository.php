@@ -25,4 +25,18 @@ class DocumentRepository extends EntityRepository
             return null;
         }
     }
+
+    public function findByUserId($id)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('
+                SELECT d FROM TotalcanDocumancerBundle:Document d WHERE d.userId = '.$id.' ORDER BY d.id DESC'
+            );
+
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
 }

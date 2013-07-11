@@ -1,6 +1,4 @@
-{% extends "TotalcanDocumancerBundle::layout.html.twig" %}
-
-{% block title %}TotalcanDocumancerBundle:Document:list{% endblock %}
+{% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
 
 {% block content %}
 <button class="btn btn-success newDoc">New</button>
@@ -31,5 +29,4 @@
   {% endfor %}
 </table>
 <br>
-<a class="btn btn-warning" href="{{ path("logout") }}">Logout</a>
 {% endblock %}
