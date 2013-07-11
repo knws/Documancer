@@ -119,8 +119,18 @@ class DocumentController extends Controller
     public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
+
+        for($i=0; $i<=sizeof($users)-1; $i++) {
+            $usersArray[] = array(
+                'id' => $users[$i]->getId(),
+                'variables' => $users[$i]->getVariables()
+            );
+        }
         if (true === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             $documents = $em->getRepository('TotalcanDocumancerBundle:Document')->findAll();
+
+
         } else {
             $usr= $this->get('security.context')->getToken()->getUser();
             $documents = $em->getRepository('TotalcanDocumancerBundle:Document')->findByUserId($usr->getId());
@@ -141,14 +151,16 @@ class DocumentController extends Controller
         }
 
         return $this->render('TotalcanDocumancerBundle:Document:list.html.twig', array(
-            'documents' => $documentsArray
+            'documents' => $documentsArray,
+            'users' => $usersArray
        ));
     }
 
     public function newAction()
     {
         $document = new Document();
-        $form = $this->createForm(new DocumentType(), $document);
+        //$form = $this->createForm(new DocumentType(), $document);
+        $form = $this->createForm($this->get('form.type.document'), $document);
 
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {

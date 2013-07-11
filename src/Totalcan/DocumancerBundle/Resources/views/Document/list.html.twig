@@ -1,7 +1,7 @@
 {% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
 
 {% block content %}
-<button class="btn btn-success newDoc">New</button>
+<a class="btn btn-success" href="{{ path('document_new') }}">New</a>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -9,7 +9,9 @@
       <th>title</th>
       <th>dl</th>
       <th>date</th>
-      <th>userId</th>
+      {% if is_granted('ROLE_ADMIN') %}
+        <th>userId</th>
+      {% endif %}
       <th>clientId</th>
       <th>templateId</th>
       <th>designId</th>
@@ -21,7 +23,9 @@
         <td><a href="{{ path('document_edit', {'id': document.id}) }}">{{document.title}}</a></td>
         <td><a class="btn" href="{{ path('document_pdf', {'id': document.id}) }}">pdf</a> <a class="btn" href="{{ path('document_jpg', {'id': document.id}) }}">jpg</a></td>
         <td>{{document.date|date("Y m d")}}</td>
-        <td>{{document.userId}}</td>
+        {% if is_granted('ROLE_ADMIN') %}
+            <td>{{document.userId}}</td>
+        {% endif %}
         <td>{{document.clientId}}</td>
         <td>{{document.templateId}}</td>
         <td>{{document.designId}}</td>

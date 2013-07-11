@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function getUsersList()
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('
+                SELECT d FROM TotalcanDocumancerBundle:User d ORDER BY d.id DESC'
+            );
+
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
 }
