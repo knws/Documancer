@@ -1,3 +1,17 @@
+totalcan_documancer_admin:
+    pattern:  /documancer/admin
+    defaults: { _controller: TotalcanDocumancerBundle:Admin:index }
+
+totalcan_documancer_login:
+    pattern:  /documancer/login
+    defaults: { _controller: TotalcanDocumancerBundle:Admin:login }
+totalcan_documancer_login_check:
+    pattern:  /documancer/login_check
+    defaults: { _controller: TotalcanDocumancerBundle:Admin:securityCheck }
+totalcan_documancer_logout:
+    pattern:  /documancer/logout
+    defaults: { _controller: TotalcanDocumancerBundle:Admin:logout }
+
 totalcan_documancer_document_list:
     pattern:  /documancer/document/list
     defaults: { _controller: TotalcanDocumancerBundle:Document:list }

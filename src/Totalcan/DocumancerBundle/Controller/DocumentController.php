@@ -231,5 +231,33 @@ class DocumentController extends Controller
             'form' => $form->createView()
        ));
     }
+
+    public function editAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $document = $em->getRepository('TotalcanDocumancerBundle:Document')->find($id);
+
+        $form = $this->createForm(new DocumentType(), $document);
+
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+
+                $em = $this->getDoctrine()
+                           ->getEntityManager();
+                $em->persist($document);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('totalcan_documancer_document_list'));
+            }
+        }
+
+        return $this->render('TotalcanDocumancerBundle:Document:edit.html.twig', array(
+            'form' => $form->createView(),
+            'document' => $document
+       ));
+    }
 }
 
