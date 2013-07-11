@@ -24,15 +24,31 @@ class DocumentController extends Controller
         return $this->render('TotalcanDocumancerBundle:Document:index.html.twig', array('name' => $name, 'title' => $name) );
     }
 
-    public function imageAction($name)
+    public function imageAction($id)
     {
-        $html = $this->renderView('TotalcanDocumancerBundle:Document:index.html.twig', array(
-            'name'  => $name,
-            'title' => $name
-        ));
+        $em = $this->getDoctrine()->getManager();
+        $document = $em->getRepository('TotalcanDocumancerBundle:Document')->find($id);
+
+        $data = array(
+            'id' => $document->getId(),
+            'variables' => json_decode($document->getVariables(), 1),
+            'template' => $document->getTemplate(),
+            'date' => $document->getDate(),
+            'userId' => $document->getUserId()->getVariables(),
+            'designId' => $document->getDesignId()->getTitle(),
+            'templateId' => $document->getTemplateId()->getTitle(),
+            'clientId' => $document->getClientId()->getVariables(),
+            'title' => $document->getTitle()
+        );
+
+        $env = new \Twig_Environment(new \Twig_Loader_String());
+        $html = $env->render( $data['template'], $data);
 
         return new Response(
-            $this->get('knp_snappy.image')->getOutputFromHtml($html),
+            $this->get('knp_snappy.image')->getOutputFromHtml(
+                    //iconv("UTF-8", "windows-1251", $html)
+                    $html
+                    ),
             200,
             array(
                 'Content-Type'          => 'image/jpg',
@@ -41,29 +57,57 @@ class DocumentController extends Controller
         );
     }
 
-    public function templateAction($name)
+    public function pdfAction($id)
     {
-        $html = $this->renderView('TotalcanDocumancerBundle:Document:index.html.twig', array(
-            'name'  => $name,
-            'title' => $name
-        ));
+        $em = $this->getDoctrine()->getManager();
+        $document = $em->getRepository('TotalcanDocumancerBundle:Document')->find($id);
 
+        $doc = array(
+            'id' => $document->getId(),
+            'variables' => json_decode($document->getVariables(), 1),
+            'template' => $document->getTemplate(),
+            'date' => $document->getDate(),
+            'userId' => $document->getUserId()->getVariables(),
+            'designId' => $document->getDesignId()->getTitle(),
+            'templateId' => $document->getTemplateId()->getTitle(),
+            'clientId' => $document->getClientId()->getVariables(),
+            'title' => $document->getTitle()
+        );
+
+        foreach (json_decode($document->getVariables(), 1) as $key => $val) {
+            $data[$key] = $val;
+        }
+
+        $env = new \Twig_Environment(new \Twig_Loader_String());
+        $html = $env->render( $doc['template'], $data);
         return new Response(
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            $this->get('knp_snappy.pdf')->getOutputFromHtml(
+                    //iconv("UTF-8", "windows-1251", $html)
+                    $html
+                    ),
             200,
             array(
                 'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+                'Content-Disposition'   => 'attachment; filename="'.$doc['title'].'.pdf"'
             )
         );
+
+//        return new Response(
+//            $this->get('knp_snappy.pdf')->getOutput('http://google.com'),
+//            200,
+//            array(
+//                'Content-Type'          => 'application/pdf',
+//                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+//            )
+//        );
     }
 
     public function urlAction($name)
     {
-        $pageUrl = $this->generateUrl('totalcan_documancer_homepage', array('name' => $name), true);
+//        $pageUrl = $this->generateUrl('totalcan_documancer_homepage', array('name' => $name), true);
 
         return new Response(
-            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+            $this->get('knp_snappy.pdf')->getOutput('http://google.com'),
             200,
             array(
                 'Content-Type'          => 'application/pdf',

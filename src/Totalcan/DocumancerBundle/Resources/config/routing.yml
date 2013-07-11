@@ -1,20 +1,3 @@
-totalcan_documancer_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: TotalcanDocumancerBundle:Document:index }
-totalcan_documancer_image:
-    pattern:  /image/{name}
-    defaults: { _controller: TotalcanDocumancerBundle:Document:image }
-totalcan_documancer_template:
-    pattern:  /template/{name}
-    defaults: { _controller: TotalcanDocumancerBundle:Document:template }
-totalcan_documancer_url:
-    pattern:  /url/{name}
-    defaults: { _controller: TotalcanDocumancerBundle:Document:url }
-totalcan_documancer_entity:
-    pattern:  /entity
-    defaults: { _controller: TotalcanDocumancerBundle:Document:entity }
-
-
 totalcan_documancer_document_list:
     pattern:  /documancer/document/list
     defaults: { _controller: TotalcanDocumancerBundle:Document:list }
@@ -30,6 +13,12 @@ totalcan_documancer_document_delete:
 totalcan_documancer_document_show:
     pattern:  /documancer/document/{id}
     defaults: { _controller: TotalcanDocumancerBundle:Document:show }
+totalcan_documancer_document_pdf:
+    pattern:  /documancer/document/dl/{id}.pdf
+    defaults: { _controller: TotalcanDocumancerBundle:Document:pdf }
+totalcan_documancer_document_jpg:
+    pattern:  /documancer/document/dl/{id}.jpg
+    defaults: { _controller: TotalcanDocumancerBundle:Document:image }
 
 totalcan_documancer_client_list:
     pattern:  /documancer/client/list

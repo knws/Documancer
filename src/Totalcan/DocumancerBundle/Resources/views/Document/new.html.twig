@@ -4,10 +4,6 @@
 <form class="form-horizontal"  action="{{ path('totalcan_documancer_document_new') }}" method="post" {{ form_enctype(form) }}>
   <div class="control-group">
 
-        {{ form_row(form.variables, { 'attr': {'class':'input-xlarge','placeholder':''} }) }}
-
-    {{ form_row(form.date, {'attr': {'class':'span3'} }) }}
-
     {{ form_errors(form) }}
     {{ form_widget(form) }}
    <div class="control-group">
