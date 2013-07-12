@@ -55,9 +55,13 @@ client_new:
     defaults: { _controller: TotalcanDocumancerBundle:Client:new }
 client_edit:
     pattern:  /client/edit/{id}
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Client:edit }
 client_delete:
     pattern:  /client/delete/{id}
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Client:delete }
 
 design_list:
@@ -68,13 +72,14 @@ design_new:
     defaults: { _controller: TotalcanDocumancerBundle:Design:new }
 design_edit:
     pattern:  /design/edit/{id}
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Design:edit }
 design_delete:
     pattern:  /design/delete/{id}
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Design:delete }
-design_show:
-    pattern:  /design/{id}
-    defaults: { _controller: TotalcanDocumancerBundle:Design:show }
 
 user_list:
     pattern:  /user/list
@@ -84,13 +89,14 @@ user_new:
     defaults: { _controller: TotalcanDocumancerBundle:User:new }
 user_edit:
     pattern:  /user/edit/{id}
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:User:edit }
 user_delete:
     pattern:  /user/delete/{id}
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:User:delete }
-user_show:
-    pattern:  /user/{id}
-    defaults: { _controller: TotalcanDocumancerBundle:User:show }
 
 template_list:
     pattern:  /template/list
@@ -100,10 +106,28 @@ template_new:
     defaults: { _controller: TotalcanDocumancerBundle:Template:new }
 template_edit:
     pattern:  /template/edit/{id}
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Template:edit }
 template_delete:
     pattern:  /template/delete/{id}
+    requirements:
+        id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Template:delete }
-template_show:
-    pattern:  /template/{id}
-    defaults: { _controller: TotalcanDocumancerBundle:Template:show }
+
+company_list:
+    pattern:  /company/list
+    defaults: { _controller: TotalcanDocumancerBundle:Company:list }
+company_new:
+    pattern:  /company/new
+    defaults: { _controller: TotalcanDocumancerBundle:Company:new }
+company_edit:
+    pattern:  /company/edit/{id}
+    requirements:
+        id:  \d+
+    defaults: { _controller: TotalcanDocumancerBundle:Company:edit }
+company_delete:
+    pattern:  /company/delete/{id}
+    requirements:
+        id:  \d+
+    defaults: { _controller: TotalcanDocumancerBundle:Company:delete }

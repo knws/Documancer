@@ -1,7 +1,34 @@
-{% extends "::base.html.twig" %}
+{% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
 
-{% block title %}TotalcanDocumancerBundle:Template:list{% endblock %}
-
-{% block body %}
-<h1>Welcome to the Template:list page</h1>
+{% block content %}
+<a class="btn btn-success" href="{{ path('template_new') }}">New</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>title</th>
+      <th>variables</th>
+      <th>template</th>
+      <th>date</th>
+      {% if is_granted('ROLE_ADMIN') %}
+        <th>userId</th>
+      {% endif %}
+      <th>delete</th>
+    </tr>
+  </thead>
+  {% for template in templates %}
+    <tr>
+        <td>{{template.id}}</td>
+        <td><a href="{{ path('template_edit', {'id': template.id}) }}">{{template.title}}</a></td>
+        <td>{{template.variables}}</td>
+        <td>{{template.template}}</td>
+        <td>{{template.date|date("Y m d")}}</td>
+        {% if is_granted('ROLE_ADMIN') %}
+            <td>{{template.userId}}</td>
+        {% endif %}
+        <td><a class="btn btn-danger" href="{{path('template_delete', {'id': template.id})}}">del</a></td>
+    </tr>
+  {% endfor %}
+</table>
+<br>
 {% endblock %}

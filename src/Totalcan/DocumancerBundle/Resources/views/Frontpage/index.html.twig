@@ -30,7 +30,7 @@ body {
               {% if app.user.username is defined and app.user.username%}
               {% if is_granted('ROLE_ADMIN') %}
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Юзеры <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Операторы <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   {% for user in users %}
                   <li><a href="{{ path('homepage') }}?_change_user={{user.username}}">{{user.username}}</a></li>

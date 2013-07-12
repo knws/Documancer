@@ -76,7 +76,6 @@ class ClientController extends Controller
         $em = $this->getDoctrine()->getManager();
         $client = $em->getRepository('TotalcanDocumancerBundle:Client')->find($id);
         $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
-        //$form = $this->createForm(new ClientType(), $client);
         $form = $this->createForm($this->get('form.type.client'), $client);
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
