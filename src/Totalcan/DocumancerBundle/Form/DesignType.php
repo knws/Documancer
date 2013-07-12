@@ -15,7 +15,7 @@ class DesignType extends AbstractType
     {
         $this->securityContext = $securityContext;
     }
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -23,7 +23,7 @@ class DesignType extends AbstractType
             ->add('variables')
             ->add('title')
             ->add('date')
-            ->add('userId')
+            ->add('userId', 'entity', array('class'=>'Totalcan\DocumancerBundle\Entity\User', 'property'=>'username' ))
         ;
     }
 

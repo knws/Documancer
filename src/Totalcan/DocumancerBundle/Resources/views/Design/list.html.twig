@@ -1,7 +1,35 @@
-{% extends "::base.html.twig" %}
+{% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
 
-{% block title %}TotalcanDocumancerBundle:Design:list{% endblock %}
-
-{% block body %}
-<h1>Welcome to the Design:list page</h1>
+{% block content %}
+<a class="btn btn-success" href="{{ path('design_new') }}">New</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>title</th>
+      <th>date</th>
+      <th>design</th>
+      <th>variables</th>
+      {% if is_granted('ROLE_ADMIN') %}
+        <th>userId</th>
+      {% endif %}
+      <th>delete</th>
+    </tr>
+  </thead>
+  {% for design in designs %}
+    <tr>
+        <td>{{design.id}}</td>
+        <td><a href="{{ path('design_edit', {'id': design.id}) }}">{{design.title}}</a></td>
+        <td>{{design.date|date("Y m d")}}</td>
+        <td>{{design.design}}</td>
+        <td>{{design.variables}}</td>
+        {% if is_granted('ROLE_ADMIN') %}
+            <td>{{design.userId}}</td>
+        {% endif %}
+        <td>{{design.designId}}</td>
+        <td><a class="btn btn-danger" href="{{path('design_delete', {'id': design.id})}}">del</a></td>
+    </tr>
+  {% endfor %}
+</table>
+<br>
 {% endblock %}
