@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class ClientRepository extends EntityRepository
 {
+    public function findByUserId($id)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('
+                SELECT d FROM TotalcanDocumancerBundle:Client d WHERE d.userId = '.$id.' ORDER BY d.id DESC'
+            );
+
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
 }

@@ -47,6 +47,13 @@ class Client
      */
     protected $documents;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="exId", type="string", length=255)
+     */
+    private $exId;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
@@ -149,17 +156,40 @@ class Client
     public function setUserId(\Totalcan\DocumancerBundle\Entity\User $userId = null)
     {
         $this->userId = $userId;
-    
+
         return $this;
     }
 
     /**
      * Get userId
      *
-     * @return \Totalcan\DocumancerBundle\Entity\User 
+     * @return \Totalcan\DocumancerBundle\Entity\User
      */
     public function getUserId()
     {
         return $this->userId;
+    }
+
+    /**
+     * Set exId
+     *
+     * @param string $exId
+     * @return Client
+     */
+    public function setExId($exId)
+    {
+        $this->exId = $exId;
+    
+        return $this;
+    }
+
+    /**
+     * Get exId
+     *
+     * @return string 
+     */
+    public function getExId()
+    {
+        return $this->exId;
     }
 }

@@ -59,9 +59,6 @@ client_edit:
 client_delete:
     pattern:  /client/delete/{id}
     defaults: { _controller: TotalcanDocumancerBundle:Client:delete }
-client_show:
-    pattern:  /client/{id}
-    defaults: { _controller: TotalcanDocumancerBundle:Client:show }
 
 design_list:
     pattern:  /design/list

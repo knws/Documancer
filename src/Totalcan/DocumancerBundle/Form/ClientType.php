@@ -15,14 +15,16 @@ class ClientType extends AbstractType
     {
         $this->securityContext = $securityContext;
     }
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('variables', 'text', array(
                 'label' => 'Переменные'))
             ->add('date')
-            ->add('userId', 'entity', array('class'=>'Totalcan\DocumancerBundle\Entity\User', 'property'=>'variables' ));
+            ->add('userId', 'entity', array('class'=>'Totalcan\DocumancerBundle\Entity\User', 'property'=>'variables' ))
+            ->add('exId')
+
         ;
     }
 

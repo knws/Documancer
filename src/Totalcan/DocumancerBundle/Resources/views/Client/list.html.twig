@@ -1,7 +1,32 @@
-{% extends "::base.html.twig" %}
+{% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
 
-{% block title %}TotalcanDocumancerBundle:Client:list{% endblock %}
-
-{% block body %}
-<h1>Welcome to the Client:list page</h1>
+{% block content %}
+<a class="btn btn-success" href="{{ path('client_new') }}">New</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>variables</th>
+      <th>date</th>
+      {% if is_granted('ROLE_ADMIN') %}
+        <th>userId</th>
+      {% endif %}
+      <th>exId</th>
+      <th>del</th>
+    </tr>
+  </thead>
+  {% for client in clients %}
+    <tr>
+        <td>{{client.id}}</td>
+        <td><a href="{{ path('client_edit', {'id': client.id}) }}">{{client.variables}}</a></td>
+        <td>{{client.date|date("Y m d")}}</td>
+        {% if is_granted('ROLE_ADMIN') %}
+            <td>{{client.userId}}</td>
+        {% endif %}
+        <td>{{client.exId}}</td>
+        <td><a class="btn btn-danger" href="{{path('client_delete', {'id': client.id})}}">del</a></td>
+    </tr>
+  {% endfor %}
+</table>
+<br>
 {% endblock %}

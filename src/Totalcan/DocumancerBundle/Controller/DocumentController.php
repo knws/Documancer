@@ -154,7 +154,7 @@ class DocumentController extends Controller
     {
         $document = new Document();
         //$form = $this->createForm(new DocumentType(), $document);
-        $form = $this->createForm(new DocumentType($this->get('security.context')), $document);
+        $form = $this->createForm($this->get('form.type.document'), $document);
 
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
@@ -170,7 +170,7 @@ class DocumentController extends Controller
                 $em->persist($document);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('document_new'));
+                return $this->redirect($this->generateUrl('document_list'));
             }
         }
 
@@ -186,7 +186,7 @@ class DocumentController extends Controller
         $document = $em->getRepository('TotalcanDocumancerBundle:Document')->find($id);
         $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
         //$form = $this->createForm(new DocumentType(), $document);
-        $form = $this->createForm(new DocumentType($this->get('security.context')), $document);
+        $form = $this->createForm($this->get('form.type.document'), $document);
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
@@ -222,6 +222,32 @@ class DocumentController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('document_list'));
+    }
+
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $document = $em->getRepository('TotalcanDocumancerBundle:Document')->find($id);
+
+        $doc = array(
+            'id' => $document->getId(),
+            'variables' => json_decode($document->getVariables(), 1),
+            'template' => $document->getTemplate(),
+            'date' => $document->getDate(),
+            'userId' => $document->getUserId()->getVariables(),
+            'designId' => $document->getDesignId()->getTitle(),
+            'templateId' => $document->getTemplateId()->getTitle(),
+            'clientId' => $document->getClientId()->getVariables(),
+            'title' => $document->getTitle()
+        );
+
+        foreach (json_decode($document->getVariables(), 1) as $key => $val) {
+            $data[$key] = $val;
+        }
+
+        $env = new \Twig_Environment(new \Twig_Loader_String());
+        $html = $env->render( $doc['template'], $data);
+        return new Response($html);
     }
 }
 
