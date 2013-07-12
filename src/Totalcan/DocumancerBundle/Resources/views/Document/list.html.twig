@@ -9,7 +9,7 @@
       <th>title</th>
       <th>dl</th>
       <th>date</th>
-      {% if is_granted('ROLE_ADMIN') %}
+      {% if is_granted('ROLE_SUPER_ADMIN') %}
         <th>userId</th>
       {% endif %}
       <th>clientId</th>
@@ -24,7 +24,7 @@
         <td><a href="{{ path('document_edit', {'id': document.id}) }}">{{document.title}}</a></td>
         <td><a class="btn" href="{{ path('document_pdf', {'id': document.id}) }}">pdf</a> <a class="btn" href="{{ path('document_jpg', {'id': document.id}) }}">jpg</a></td>
         <td>{{document.date|date("Y m d")}}</td>
-        {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
             <td>{{document.userId}}</td>
         {% endif %}
         <td>{{document.clientId}}</td>

@@ -13,6 +13,7 @@ class CompanyType extends AbstractType
         $builder
             ->add('title')
             ->add('variables')
+            ->add('parent')
             ->add('date')
         ;
     }

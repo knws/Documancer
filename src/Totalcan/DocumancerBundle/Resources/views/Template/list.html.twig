@@ -10,7 +10,7 @@
       <th>variables</th>
       <th>template</th>
       <th>date</th>
-      {% if is_granted('ROLE_ADMIN') %}
+      {% if is_granted('ROLE_SUPER_ADMIN') %}
         <th>userId</th>
       {% endif %}
       <th>delete</th>
@@ -23,7 +23,7 @@
         <td>{{template.variables}}</td>
         <td>{{template.template}}</td>
         <td>{{template.date|date("Y m d")}}</td>
-        {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
             <td>{{template.userId}}</td>
         {% endif %}
         <td><a class="btn btn-danger" href="{{path('template_delete', {'id': template.id})}}">del</a></td>

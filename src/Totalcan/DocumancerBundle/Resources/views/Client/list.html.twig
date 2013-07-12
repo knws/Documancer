@@ -8,7 +8,7 @@
       <th>#</th>
       <th>variables</th>
       <th>date</th>
-      {% if is_granted('ROLE_ADMIN') %}
+      {% if is_granted('ROLE_SUPER_ADMIN') %}
         <th>userId</th>
       {% endif %}
       <th>exId</th>
@@ -20,7 +20,7 @@
         <td>{{client.id}}</td>
         <td><a href="{{ path('client_edit', {'id': client.id}) }}">{{client.variables}}</a></td>
         <td>{{client.date|date("Y m d")}}</td>
-        {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
             <td>{{client.userId}}</td>
         {% endif %}
         <td>{{client.exId}}</td>

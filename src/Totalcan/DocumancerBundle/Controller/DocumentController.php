@@ -121,7 +121,7 @@ class DocumentController extends Controller
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
 
-        if (true === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (true === $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
             $documents = $em->getRepository('TotalcanDocumancerBundle:Document')->findAll();
 
 

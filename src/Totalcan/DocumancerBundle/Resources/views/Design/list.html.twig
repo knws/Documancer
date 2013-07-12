@@ -10,7 +10,7 @@
       <th>date</th>
       <th>design</th>
       <th>variables</th>
-      {% if is_granted('ROLE_ADMIN') %}
+      {% if is_granted('ROLE_SUPER_ADMIN') %}
         <th>userId</th>
       {% endif %}
       <th>delete</th>
@@ -23,10 +23,9 @@
         <td>{{design.date|date("Y m d")}}</td>
         <td>{{design.design}}</td>
         <td>{{design.variables}}</td>
-        {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
             <td>{{design.userId}}</td>
         {% endif %}
-        <td>{{design.designId}}</td>
         <td><a class="btn btn-danger" href="{{path('design_delete', {'id': design.id})}}">del</a></td>
     </tr>
   {% endfor %}

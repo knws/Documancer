@@ -16,7 +16,7 @@ class TemplateController extends Controller
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
 
-        if (true === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (true === $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
             $templates = $em->getRepository('TotalcanDocumancerBundle:Template')->findAll();
 
 

@@ -26,7 +26,7 @@ class DocumentType extends AbstractType
             ->add('template', 'textarea', array('label' => 'Шаблон'))
             ->add('date', null);
 
-        if (true === $this->securityContext->isGranted('ROLE_ADMIN')) {
+        if (true === $this->securityContext->isGranted('ROLE_SUPER_ADMIN')) {
             $builder
                 ->add('userId', 'entity', array(
                     'class'=>'Totalcan\DocumancerBundle\Entity\User',

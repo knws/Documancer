@@ -1,0 +1,27 @@
+{% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
+
+{% block content %}
+<a class="btn btn-success" href="{{ path('company_new') }}">New</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>title</th>
+      <th>date</th>
+      <th>variables</th>
+      <th>parent</th>
+    </tr>
+  </thead>
+  {% for company in companys %}
+    <tr>
+        <td>{{company.id}}</td>
+        <td><a href="{{ path('company_edit', {'id': company.id}) }}">{{company.title}}</a></td>
+        <td>{{company.date|date("Y m d")}}</td>
+        <td>{{company.variables}}</td>
+        <td>{{company.parent}}</td>
+        <td><a class="btn btn-danger" href="{{path('company_delete', {'id': company.id})}}">del</a></td>
+    </tr>
+  {% endfor %}
+</table>
+<br>
+{% endblock %}

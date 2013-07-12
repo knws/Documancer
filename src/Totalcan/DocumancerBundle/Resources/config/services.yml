@@ -21,3 +21,6 @@ services:
     form.type.user:
         class: Totalcan\DocumancerBundle\Form\UserType
         arguments: ["@security.context"]
+    form.type.company:
+        class: Totalcan\DocumancerBundle\Form\CompanyType
+        arguments: ["@security.context"]

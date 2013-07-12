@@ -42,11 +42,17 @@ class Company
      */
     private $date;
 
+   /**
+     * @var integer
+     *
+     * @ORM\Column(name="parent", type="integer")
+     */
+    private $parent;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,14 +68,14 @@ class Company
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -85,14 +91,14 @@ class Company
     public function setVariables($variables)
     {
         $this->variables = $variables;
-    
+
         return $this;
     }
 
     /**
      * Get variables
      *
-     * @return string 
+     * @return string
      */
     public function getVariables()
     {
@@ -108,17 +114,40 @@ class Company
     public function setDate($date)
     {
         $this->date = $date;
-    
+
         return $this;
     }
 
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param integer $parent
+     * @return Company
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+    
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return integer 
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 }

@@ -71,12 +71,16 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * @inheritDoc
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
+     *
      */
+    private $roles;
+
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return $this->roles->toArray();
     }
+
 
     /**
      * @inheritDoc
@@ -148,6 +152,7 @@ class User implements UserInterface, \Serializable
         $this->clients = new ArrayCollection();
         $this->isActive = true;
         $this->salt = md5(uniqid(null, true));
+        $this->roles = new ArrayCollection();
     }
 
     /**
