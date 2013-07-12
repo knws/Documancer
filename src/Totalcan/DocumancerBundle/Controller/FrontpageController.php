@@ -16,14 +16,7 @@ class FrontpageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
 
-        for($i=0; $i<=sizeof($users)-1; $i++) {
-            $usersArray[] = array(
-                'id' => $users[$i]->getId(),
-                'variables' => $users[$i]->getVariables()
-            );
-        }
-
-        return $this->render('TotalcanDocumancerBundle:Frontpage:index.html.twig', array( 'users' => $usersArray
+        return $this->render('TotalcanDocumancerBundle:Frontpage:index.html.twig', array( 'users' => $users
         ));
     }
 }

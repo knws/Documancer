@@ -121,12 +121,6 @@ class DocumentController extends Controller
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
 
-        for($i=0; $i<=sizeof($users)-1; $i++) {
-            $usersArray[] = array(
-                'id' => $users[$i]->getId(),
-                'variables' => $users[$i]->getVariables()
-            );
-        }
         if (true === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             $documents = $em->getRepository('TotalcanDocumancerBundle:Document')->findAll();
 
@@ -152,7 +146,7 @@ class DocumentController extends Controller
 
         return $this->render('TotalcanDocumancerBundle:Document:list.html.twig', array(
             'documents' => $documentsArray,
-            'users' => $usersArray
+            'users' => $users
        ));
     }
 
@@ -160,7 +154,10 @@ class DocumentController extends Controller
     {
         $document = new Document();
         //$form = $this->createForm(new DocumentType(), $document);
-        $form = $this->createForm($this->get('form.type.document'), $document);
+        $form = $this->createForm(new DocumentType($this->get('security.context')), $document);
+
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
 
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
@@ -178,7 +175,8 @@ class DocumentController extends Controller
         }
 
         return $this->render('TotalcanDocumancerBundle:Document:new.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'users' => $users
        ));
     }
 
@@ -186,9 +184,9 @@ class DocumentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $document = $em->getRepository('TotalcanDocumancerBundle:Document')->find($id);
-
+        $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
         //$form = $this->createForm(new DocumentType(), $document);
-        $form = $this->createForm($this->get('form.type.document'), $document);
+        $form = $this->createForm(new DocumentType($this->get('security.context')), $document);
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
@@ -206,7 +204,8 @@ class DocumentController extends Controller
 
         return $this->render('TotalcanDocumancerBundle:Document:edit.html.twig', array(
             'form' => $form->createView(),
-            'document' => $document
+            'users' => $users,
+            'document' => $document,
        ));
     }
 }

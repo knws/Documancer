@@ -5,9 +5,7 @@ services:
 #    totalcan_documancer.example:
 #        class: %totalcan_documancer.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
-services:
-    form.type.document:
-        class: Totalcan\DocumancerBundle\Form\DocumentType
-        arguments: ["@security.context"]
-        tags:
-            - { name: form.type, alias: document_type }
+
+#    form.type.document:
+#        class: Totalcan\DocumancerBundle\Form\DocumentType
+#        arguments: ["@security.context"]

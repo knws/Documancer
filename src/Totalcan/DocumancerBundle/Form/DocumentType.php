@@ -45,8 +45,8 @@ class DocumentType extends AbstractType
                     'property'=>'id'
                     ))
             ;
-        } else {
-            $usr = $this->securityContext->getToken()->getUser();
+        } elseif(true === $this->securityContext->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $usr = $this->securityContext->getToken()->getUser()->getId();
             $builder
                 ->add('designId', 'entity', array(
                     'class'=>'Totalcan\DocumancerBundle\Entity\Design',
@@ -54,7 +54,7 @@ class DocumentType extends AbstractType
                     'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('d')
                                     ->where('d.userId > :userId')
-                                    ->setParameter('userId', $usr->getId())
+                                    ->setParameter('userId', 1)
                                     ->orderBy('d.id', 'ASC');
                         }
                     ))
@@ -64,7 +64,7 @@ class DocumentType extends AbstractType
                     'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('d')
                                     ->where('d.userId > :userId')
-                                    ->setParameter('userId', $usr->getId())
+                                    ->setParameter('userId', 1)
                                     ->orderBy('d.id', 'ASC');
                         }
                     ))
@@ -74,7 +74,7 @@ class DocumentType extends AbstractType
                     'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('d')
                                     ->where('d.userId > :userId')
-                                    ->setParameter('userId', $usr->getId())
+                                    ->setParameter('userId', $usr)
                                     ->orderBy('d.id', 'ASC');
                         }
                     ))
