@@ -15,6 +15,7 @@
       <th>clientId</th>
       <th>templateId</th>
       <th>designId</th>
+      <th>delete</th>
     </tr>
   </thead>
   {% for document in documents %}
@@ -29,6 +30,7 @@
         <td>{{document.clientId}}</td>
         <td>{{document.templateId}}</td>
         <td>{{document.designId}}</td>
+        <td><a class="btn btn-danger" href="{{path('document_delete', {'id': document.id})}}">del</a></td>
     </tr>
   {% endfor %}
 </table>

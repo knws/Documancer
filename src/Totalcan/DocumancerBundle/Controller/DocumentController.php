@@ -208,5 +208,20 @@ class DocumentController extends Controller
             'document' => $document,
        ));
     }
+
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $document = $em->getRepository('TotalcanDocumancerBundle:Document')->find($id);
+
+        if (!$document) {
+            throw $this->createNotFoundException('No document found for id '.$id);
+        }
+
+        $em->remove($document);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('document_list'));
+    }
 }
 

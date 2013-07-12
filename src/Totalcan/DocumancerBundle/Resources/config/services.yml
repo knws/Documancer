@@ -6,6 +6,18 @@ services:
 #        class: %totalcan_documancer.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
 
-#    form.type.document:
-#        class: Totalcan\DocumancerBundle\Form\DocumentType
-#        arguments: ["@security.context"]
+    form.type.document:
+        class: Totalcan\DocumancerBundle\Form\DocumentType
+        arguments: ["@security.context"]
+    form.type.design:
+        class: Totalcan\DocumancerBundle\Form\DesignType
+        arguments: ["@security.context"]
+    form.type.template:
+        class: Totalcan\DocumancerBundle\Form\TemplateType
+        arguments: ["@security.context"]
+    form.type.client:
+        class: Totalcan\DocumancerBundle\Form\ClientType
+        arguments: ["@security.context"]
+    form.type.user:
+        class: Totalcan\DocumancerBundle\Form\UserType
+        arguments: ["@security.context"]
