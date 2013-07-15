@@ -85,7 +85,6 @@ class CompanyController extends Controller
         $em = $this->getDoctrine()->getManager();
         $company = $em->getRepository('TotalcanDocumancerBundle:Company')->find($id);
         $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
-        //$form = $this->createForm(new CompanyType(), $company);
         $form = $this->createForm($this->get('form.type.company'), $company);
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
