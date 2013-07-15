@@ -45,6 +45,13 @@ class Client
     private $date;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime")
+     */
+    private $updated;
+
+    /**
      * @ORM\OneToMany(targetEntity="Document", mappedBy="clientId")
      */
     protected $documents;
@@ -201,5 +208,13 @@ class Client
     public function setDateValue()
     {
         $this->date = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedValue()
+    {
+        $this->updated = new \DateTime();
     }
 }

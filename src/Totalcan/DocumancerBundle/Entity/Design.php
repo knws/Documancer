@@ -58,6 +58,12 @@ class Design
     private $date;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime")
+     */
+    private $updated;
+    /**
      * @ORM\OneToMany(targetEntity="Document", mappedBy="designId")
      */
     protected $documents;
@@ -231,5 +237,13 @@ class Design
     public function setDateValue()
     {
         $this->date = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedValue()
+    {
+        $this->updated = new \DateTime();
     }
 }
