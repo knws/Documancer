@@ -1,0 +1,28 @@
+{% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
+
+{% block content %}
+<a class="btn btn-success" href="{{ path('role_new') }}">New</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>name</th>
+      <th>role</th>
+      {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <th>delete</th>
+      {% endif %}
+    </tr>
+  </thead>
+  {% for role in roles %}
+    <tr>
+        <td>{{role.id}}</td>
+        <td><a href="{{ path('role_edit', {'id': role.id}) }}">{{role.name}}</a></td>
+        <td>{{role.role}}</td>
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+            <td><a class="btn btn-danger" href="{{path('role_delete', {'id': role.id})}}">del</a></td>
+        {% endif %}
+    </tr>
+  {% endfor %}
+</table>
+<br>
+{% endblock %}

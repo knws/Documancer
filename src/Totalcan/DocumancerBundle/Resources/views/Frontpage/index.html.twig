@@ -41,12 +41,14 @@ body {
 
                   <li class="nav-header">Управление</li>
                   <li><a href="{{ path('user_list')}}">Все пользователи</a></li>
-                  <li><a href="#">Группы пользователей</a></li>
+                  <li><a href="{{ path('role_list')}}">Группы пользователей</a></li>
                   <li class="divider"></li>
                   <li class="nav-header">Вход от имени:</li>
+                  <li class="text-center"><form class="form-inline"><input id="switch_user" class="span2" type="text">&nbsp;<button id="switch_user_submit" class="btn btn-success btn-small">Go</button></form></li>
                   {% for user in users %}
                   <li><a href="{{ path('homepage') }}?_change_user={{user.username}}">{{user.username}}</a></li>
                   {% endfor %}
+
                 </ul>
               </li>
               {% endif %}
@@ -54,6 +56,9 @@ body {
             </ul>
             {% if app.user.username is defined and app.user.username%}
                <a href="#" class="btn">{{ app.user.username }}</a> <a class="btn btn-warning" href="{{ path("logout") }}">Logout</a>
+              {# {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                    <a class="btn btn-info" href="{{ path('homepage', {_change_user: '_exit'}) }}">Admin</a>
+                {% endif %}#}
             {% else %}
             <form class="navbar-form pull-right" action="{{ path("login_check") }}" method="post" id="login">
               <input class="span2" type="text" placeholder="Email" id="username" name="_username" value="" >

@@ -131,3 +131,20 @@ company_delete:
     requirements:
         id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Company:delete }
+
+role_list:
+    pattern:  /role/list
+    defaults: { _controller: TotalcanDocumancerBundle:Role:list }
+role_new:
+    pattern:  /role/new
+    defaults: { _controller: TotalcanDocumancerBundle:Role:new }
+role_edit:
+    pattern:  /role/edit/{id}
+    requirements:
+        id:  \d+
+    defaults: { _controller: TotalcanDocumancerBundle:Role:edit }
+role_delete:
+    pattern:  /role/delete/{id}
+    requirements:
+        id:  \d+
+    defaults: { _controller: TotalcanDocumancerBundle:Role:delete }

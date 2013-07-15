@@ -27,7 +27,7 @@ class Role implements RoleInterface
     private $name;
 
     /**
-     * @ORM\Column(name="role", type="string", length=20, unique=true)
+     * @ORM\Column(name="role", type="string", length=30, unique=true)
      */
     private $role;
 
