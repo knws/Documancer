@@ -150,7 +150,7 @@ role_delete:
     defaults: { _controller: TotalcanDocumancerBundle:Role:delete }
 
 wizard_client:
-    pattern:  /wizard/client
-    defaults: { _controller: TotalcanDocumancerBundle:Wizard:new }
-#    requirements:
-#        id:  \d+
+    pattern:  /wizard/client/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Wizard:client }
+    requirements:
+        id:  \d+
