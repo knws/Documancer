@@ -20,7 +20,7 @@
     <tr>
         <td>{{design.id}}</td>
         <td><a href="{{ path('design_edit', {'id': design.id}) }}">{{design.title}}</a></td>
-        <td>{{design.date|date("Y m d")}}</td>
+        <td>{{design.date|date("d-m-y")}}</td>
         <td>{{design.design}}</td>
         <td>{{design.variables}}</td>
         {% if is_granted('ROLE_SUPER_ADMIN') %}

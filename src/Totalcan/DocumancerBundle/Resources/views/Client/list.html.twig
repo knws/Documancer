@@ -19,7 +19,7 @@
     <tr>
         <td>{{client.id}}</td>
         <td><a href="{{ path('client_edit', {'id': client.id}) }}">{{client.variables}}</a></td>
-        <td>{{client.date|date("Y m d")}}</td>
+        <td>{{client.date|date("d-m-y")}}</td>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
             <td>{{client.userId}}</td>
         {% endif %}

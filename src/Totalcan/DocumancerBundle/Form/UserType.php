@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContext;
+use Totalcan\DocumancerBundle\Form\RoleType;
 
 class UserType extends AbstractType
 {
@@ -22,7 +23,12 @@ class UserType extends AbstractType
             ->add('username')
             ->add('variables')
             ->add('email')
-            ->add('roles')
+            ->add('password', 'password')
+            ->add('rolesAsCollection', 'entity', array(
+                'class' => 'TotalcanDocumancerBundle:Role',
+                'property'     => 'name',
+                'multiple'     => true
+            ))
             //->add('date')
         ;
 

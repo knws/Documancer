@@ -23,7 +23,7 @@
         <td>{{document.id}}</td>
         <td><a href="{{ path('document_edit', {'id': document.id}) }}">{{document.title}}</a></td>
         <td><a class="btn" href="{{ path('document_pdf', {'id': document.id}) }}">pdf</a> <a class="btn" href="{{ path('document_jpg', {'id': document.id}) }}">jpg</a></td>
-        <td>{{document.date|date("Y m d")}}</td>
+        <td>{{document.date|date("d-m-y")}}</td>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
             <td>{{document.userId}}</td>
         {% endif %}

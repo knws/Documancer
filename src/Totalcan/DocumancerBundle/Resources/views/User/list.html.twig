@@ -20,12 +20,14 @@
         <td><a href="{{ path('user_edit', {'id': userList.id}) }}">{{userList.username}}</a></td>
         <td>{{userList.email}}</td>
         <td>
+        {% if userList.roles is defined and userList.roles %}
         {% for role in userList.roles %}
             {{ role }}{% if not loop.last %}, {% endif %}
         {% endfor %}
+        {% endif %}
         </td>
         <td>{{userList.variables}}</td>
-        <td>{{userList.date|date("Y m d")}}</td>
+        <td>{{userList.date|date("d-m-y")}}</td>
         <td><a class="btn btn-danger" href="{{path('user_delete', {'id': userList.id})}}">del</a></td>
     </tr>
   {% endfor %}

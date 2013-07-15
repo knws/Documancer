@@ -3,7 +3,7 @@
 namespace Totalcan\DocumancerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Totalcan\DocumancerBundle\Form\User;
+use Totalcan\DocumancerBundle\Entity\User;
 
 use Totalcan\DocumancerBundle\Form\UserType;
 
@@ -51,7 +51,7 @@ class UserController extends Controller
     {
         $userList = new User();
         //$form = $this->createForm(new UserType(), $userList);
-        $form = $this->createForm($this->get('form.type.userList'), $userList);
+        $form = $this->createForm($this->get('form.type.user'), $userList);
 
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
@@ -83,7 +83,7 @@ class UserController extends Controller
         $userList = $em->getRepository('TotalcanDocumancerBundle:User')->find($id);
         $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
         //$form = $this->createForm(new UserType(), $userList);
-        $form = $this->createForm($this->get('form.type.userList'), $userList);
+        $form = $this->createForm($this->get('form.type.user'), $userList);
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);

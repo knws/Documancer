@@ -22,7 +22,7 @@
         <td><a href="{{ path('template_edit', {'id': template.id}) }}">{{template.title}}</a></td>
         <td>{{template.variables}}</td>
         <td>{{template.template}}</td>
-        <td>{{template.date|date("Y m d")}}</td>
+        <td>{{template.date|date("d-m-y")}}</td>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
             <td>{{template.userId}}</td>
         {% endif %}

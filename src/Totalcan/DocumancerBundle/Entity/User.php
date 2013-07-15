@@ -368,6 +368,30 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+     * @ORM\PrePersist
+     */
+    public function setUpdated2Value()
+    {
+        $this->updated = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setPasswordValue()
+    {
+        $this->password = sha1($this->password.'{'.$this->salt.'}');
+    }
+
+   /**
+     * @ORM\PrePersist
+     */
+    public function setPassword2Value()
+    {
+        $this->password = sha1($this->password.'{'.$this->salt.'}');
+    }
+
+    /**
      * Set username
      *
      * @param string $username
@@ -376,7 +400,7 @@ class User implements UserInterface, \Serializable
     public function setUsername($username)
     {
         $this->username = $username;
-    
+
         return $this;
     }
 
@@ -389,7 +413,7 @@ class User implements UserInterface, \Serializable
     public function setSalt($salt)
     {
         $this->salt = $salt;
-    
+
         return $this;
     }
 
@@ -402,7 +426,7 @@ class User implements UserInterface, \Serializable
     public function setPassword($password)
     {
         $this->password = $password;
-    
+
         return $this;
     }
 
@@ -415,14 +439,14 @@ class User implements UserInterface, \Serializable
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -438,14 +462,14 @@ class User implements UserInterface, \Serializable
     public function setIsActive($isActive)
     {
         $this->isActive = $isActive;
-    
+
         return $this;
     }
 
     /**
      * Get isActive
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsActive()
     {
@@ -461,14 +485,14 @@ class User implements UserInterface, \Serializable
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -484,7 +508,7 @@ class User implements UserInterface, \Serializable
     public function addRole(\Totalcan\DocumancerBundle\Entity\Role $roles)
     {
         $this->roles[] = $roles;
-    
+
         return $this;
     }
 
@@ -496,5 +520,10 @@ class User implements UserInterface, \Serializable
     public function removeRole(\Totalcan\DocumancerBundle\Entity\Role $roles)
     {
         $this->roles->removeElement($roles);
+    }
+
+    public function getRolesAsCollection()
+    {
+        return $this->roles;
     }
 }
