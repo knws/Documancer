@@ -1,0 +1,23 @@
+{% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
+
+{% block content %}
+<a class="btn btn-primary" href="{{ path('client_list') }}">Back to client list</a><br><br>
+<h4>1. Создание документа для клиента: {{ client.id}} </h4>
+<p>Данные: {{ client.variables}} </p>
+<form class="form-horizontal"  action="{{ path('client_list' ) }}" method="post">
+  <div class="control-group">
+<h4>2. Выбрать дизайн:
+<select name="design_id" id="design_id">
+{% for design in designs %}
+  <option value="{{ design.id }}">{{ design.title }}</option>
+{% endfor %}
+</select></h4>
+    <br>
+   <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-success">Next</button>
+    </div>
+  </div>
+</form>
+</div>
+{% endblock %}

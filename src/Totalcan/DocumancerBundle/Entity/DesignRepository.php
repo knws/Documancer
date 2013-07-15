@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class DesignRepository extends EntityRepository
 {
+    public function findByUserId($id)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('
+                SELECT d FROM TotalcanDocumancerBundle:Design d WHERE d.userId = '.$id.' ORDER BY d.id DESC'
+            );
+
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
 }

@@ -8,4 +8,40 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class WizardController extends Controller
 {
+    public function clientAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
+
+        $usr= $this->get('security.context')->getToken()->getUser();
+        //$clients = $em->getRepository('TotalcanDocumancerBundle:Client')->findByUserIdAndClientId($usr->getId(), $id);
+        $clients = $em->getRepository('TotalcanDocumancerBundle:Client')->findByUserIdAndClientId(1, $id);
+        $designs = $em->getRepository('TotalcanDocumancerBundle:Design')->findByUserId(1);
+
+        $clientsArray = array(
+            'id' => $clients[0]->getId(),
+            //'variables' => json_decode($clients[0]->getVariables(), 1),
+            'variables' => $clients[0]->getVariables(),
+            'date' => $clients[0]->getDate(),
+            'userId' => $clients[0]->getUserId()->getUsername(),
+            'exId' => $clients[0]->getExId(),
+        );
+
+        for($i=0; $i<=sizeof($designs)-1; $i++) {
+            $designsArray[] = array(
+                'id' => $designs[$i]->getId(),
+                'variables' => $designs[$i]->getVariables(),
+                'design' => $designs[$i]->getDesign(),
+                'date' => $designs[$i]->getDate(),
+                'title' => $designs[$i]->getTitle()
+            );
+        }
+
+        return $this->render('TotalcanDocumancerBundle:Wizard:client.html.twig', array(
+            'client' => $clientsArray,
+            'users' => $users,
+            'designs' => $designsArray
+
+       ));
+    }
 }

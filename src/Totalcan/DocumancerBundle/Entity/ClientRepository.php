@@ -25,4 +25,18 @@ class ClientRepository extends EntityRepository
             return null;
         }
     }
+
+    public function findByUserIdAndClientId($uid, $id)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('
+                SELECT c FROM TotalcanDocumancerBundle:Client c WHERE c.userId = '.$uid.' AND c.id = '.$id
+            );
+
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
 }
