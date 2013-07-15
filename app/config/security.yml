@@ -1,0 +1,52 @@
+security:
+    access_control:
+        - { path: ^/admin,  roles: ROLE_ADMIN }
+        - { path: ^/,       roles: ROLE_USER }
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_COMPANY_ADMIN:       ROLE_USER
+        ROLE_COMPANY_OPERATOR:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        chain_provider:
+            chain:
+                providers: [in_memory, user_db]
+        in_memory:
+            memory:
+                users:
+                    user: { password: ed9cc91baba23bba9a3ff37a259b9262c969e767, roles: [ 'ROLE_USER' ] }
+                    admin: { password: 833230111ecfc31e816f37b0dd91b1b9ae28ce2f, roles: [ 'ROLE_SUPER_ADMIN' ] }
+        user_db:
+            entity: { class: Totalcan\DocumancerBundle\Entity\User, property: username }
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: sha1
+            iterations: 1
+            encode_as_base64: false
+        Totalcan\DocumancerBundle\Entity\User:
+            algorithm: sha1
+            iterations: 1
+            encode_as_base64: false
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+
+        login:
+            pattern:  ^/login$
+            security: false
+
+        secured_area:
+            switch_user: { role: ROLE_SUPER_ADMIN, parameter: _change_user }
+            pattern:    ^/
+            form_login:
+                check_path: login_check
+                login_path: login
+            logout:
+                path:   logout
+                target: homepage
+
+
