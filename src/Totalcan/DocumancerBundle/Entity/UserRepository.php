@@ -75,4 +75,26 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         return $this->getEntityName() === $class
             || is_subclass_of($class, $this->getEntityName());
     }
+
+//    public function getUsersWithRoles()
+//    {
+//        $query = $this->getEntityManager()
+//                //JOIN TotalcanDocumancerBundle:Role r
+//            ->createQuery('
+//                SELECT u, ur
+//                FROM TotalcanDocumancerBundle:User u
+//
+//                JOIN TotalcanDocumancerBundle:Role r
+//                WHERE r.users = u.id
+//
+//                ORDER BY u.id DESC'
+//            );
+//
+//        try {
+//            return $query->getResult();
+//        } catch (\Doctrine\ORM\NoResultException $e) {
+//            return null;
+//        }
+//    }
+
 }
