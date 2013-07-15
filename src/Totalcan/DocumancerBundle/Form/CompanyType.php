@@ -13,8 +13,11 @@ class CompanyType extends AbstractType
         $builder
             ->add('title')
             ->add('variables')
-            ->add('parent')
-            //->add('date')
+            ->add('parent', 'entity', array(
+                    'class'=>'Totalcan\DocumancerBundle\Entity\Company',
+                    'property'=>'title',
+                    'required' => false
+            ))
         ;
     }
 

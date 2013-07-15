@@ -7,6 +7,18 @@ body {
     padding-top: 60px;
     padding-bottom: 40px;
 }
+.gyro-unit {
+padding: 30px;
+margin: 10px;
+font-size: 16px;
+font-weight: 100;
+line-height: 30px;
+color: inherit;
+background-color: #f5f5f5;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
 </style>
 {% endblock %}
 
@@ -30,7 +42,10 @@ body {
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Компании <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Totalcan</a></li>
+                  <li class="nav-header">Управление</li>
+                  <li><a href="{{ path('company_list')}}">Компании</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Недавние:</li>
                 </ul>
               </li>
               {% if app.user.username is defined and app.user.username%}
@@ -38,7 +53,6 @@ body {
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Операторы <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-
                   <li class="nav-header">Управление</li>
                   <li><a href="{{ path('user_list')}}">Все пользователи</a></li>
                   <li><a href="{{ path('role_list')}}">Группы пользователей</a></li>
@@ -78,11 +92,9 @@ body {
     </div>
 {% endblock %}
 
+
 {% block content %}
 Мастер создания нового
 <br><br>
 Таблица готовых документов
-
-
-
 {% endblock %}

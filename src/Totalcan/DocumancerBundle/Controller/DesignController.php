@@ -31,7 +31,7 @@ class DesignController extends Controller
                 'variables' => $designs[$i]->getVariables(),
                 'design' => $designs[$i]->getDesign(),
                 'date' => $designs[$i]->getDate(),
-                'userId' => $designs[$i]->getUserId()->getVariables(),
+                'userId' => $designs[$i]->getUserId()->getUsername(),
                 'title' => $designs[$i]->getTitle()
             );
         }

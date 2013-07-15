@@ -3,6 +3,7 @@
 namespace Totalcan\DocumancerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Company
@@ -51,11 +52,20 @@ class Company
     private $updated;
 
    /**
-     * @var integer
-     *
-     * @ORM\Column(name="parent", type="integer")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="childs")
+     * @ORM\JoinColumn(name="parent", referencedColumnName="id")
      */
     private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="companyId")
+     */
+    protected $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Company", mappedBy="parent")
+     */
+    protected $childs;
 
     /**
      * Get id
@@ -166,12 +176,130 @@ class Company
     {
         $this->date = new \DateTime();
     }
-    
+
     /**
      * @ORM\PreUpdate
+     */
+    public function setDate2Value()
+    {
+        $this->date = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist
      */
     public function setUpdatedValue()
     {
         $this->updated = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdated2Value()
+    {
+        $this->updated = new \DateTime();
+    }
+
+    public function getChildsAsCollection()
+    {
+        return $this->childs;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->childs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     * @return Company
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\User $users
+     * @return Company
+     */
+    public function addUser(\Totalcan\DocumancerBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\User $users
+     */
+    public function removeUser(\Totalcan\DocumancerBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Add childs
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Company $childs
+     * @return Company
+     */
+    public function addChild(\Totalcan\DocumancerBundle\Entity\Company $childs)
+    {
+        $this->childs[] = $childs;
+
+        return $this;
+    }
+
+    /**
+     * Remove childs
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Company $childs
+     */
+    public function removeChild(\Totalcan\DocumancerBundle\Entity\Company $childs)
+    {
+        $this->childs->removeElement($childs);
+    }
+
+    /**
+     * Get childs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChilds()
+    {
+        return $this->childs;
     }
 }

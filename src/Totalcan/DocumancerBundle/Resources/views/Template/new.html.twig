@@ -1,12 +1,13 @@
 {% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
 
 {% block content %}
-<a class="btn btn-primary" href="{{ path('template_list') }}">Back to list</a><br>
+<a class="btn btn-primary" href="{{ path('template_list') }}">Back to list</a><br><br>
 <form class="form-horizontal"  action="{{ path('template_new') }}" method="post" {{ form_enctype(form) }}>
   <div class="control-group">
 
     {{ form_errors(form) }}
     {{ form_widget(form) }}
+      <br>
    <div class="control-group">
     <div class="controls">
       <button type="submit" class="btn btn-success">Create</button>

@@ -142,6 +142,12 @@ class User implements UserInterface, \Serializable
     protected $templates;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="users")
+     * @ORM\JoinColumn(name="companyId", referencedColumnName="id")
+     */
+    private $companyId;
+
+    /**
      * @ORM\OneToMany(targetEntity="Client", mappedBy="userId")
      */
     protected $clients;
@@ -525,5 +531,28 @@ class User implements UserInterface, \Serializable
     public function getRolesAsCollection()
     {
         return $this->roles;
+    }
+
+    /**
+     * Set companyId
+     *
+     * @param \Totalcan\DocumancerBundle\Entity\Company $companyId
+     * @return User
+     */
+    public function setCompanyId(\Totalcan\DocumancerBundle\Entity\Company $companyId = null)
+    {
+        $this->companyId = $companyId;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyId
+     *
+     * @return \Totalcan\DocumancerBundle\Entity\Company 
+     */
+    public function getCompanyId()
+    {
+        return $this->companyId;
     }
 }

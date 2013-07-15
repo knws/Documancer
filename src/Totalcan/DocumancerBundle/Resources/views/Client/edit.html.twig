@@ -1,12 +1,13 @@
 {% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
 
 {% block content %}
-<a class="btn btn-primary" href="{{ path('client_list') }}">Back to list</a><br>
+<a class="btn btn-primary" href="{{ path('client_list') }}">Back to list</a><br><br>
 <form class="form-horizontal"  action="{{ path('client_edit', {'id': client.id}) }}" method="post" {{ form_enctype(form) }}>
   <div class="control-group">
 
     {{ form_errors(form) }}
     {{ form_widget(form) }}
+      <br>
    <div class="control-group">
     <div class="controls">
       <button type="submit" class="btn btn-success">Save</button>

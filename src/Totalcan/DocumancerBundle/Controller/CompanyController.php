@@ -39,9 +39,14 @@ class CompanyController extends Controller
                 'id' => $company[$i]->getId(),
                 'variables' => json_decode($company[$i]->getVariables(), 1),
                 'date' => $company[$i]->getDate(),
-                'parent' => $company[$i]->getParent(),
                 'title' => $company[$i]->getTitle()
             );
+
+            if($company[$i]->getParent()!=null) {
+                $companyArray[$i]['parent'] = $company[$i]->getParent()->getTitle();
+            } else {
+                $companyArray[$i]['parent'] = 'null';
+            }
         }
 
         return $this->render('TotalcanDocumancerBundle:Company:list.html.twig', array(

@@ -31,9 +31,14 @@ class TemplateController extends Controller
                 'variables' => $templates[$i]->getVariables(),
                 'template' => $templates[$i]->getTemplate(),
                 'date' => $templates[$i]->getDate(),
-                'userId' => $templates[$i]->getUserId()->getVariables(),
                 'title' => $templates[$i]->getTitle()
             );
+
+            if($templates[$i]->getUserId()!=null) {
+                $templatesArray[$i]['userId'] = $templates[$i]->getUserId()->getUsername();
+            } else {
+                $templatesArray[$i]['userId'] = 'null';
+            }
         }
 
         return $this->render('TotalcanDocumancerBundle:Template:list.html.twig', array(

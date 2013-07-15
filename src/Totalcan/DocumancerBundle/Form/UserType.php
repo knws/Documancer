@@ -29,6 +29,11 @@ class UserType extends AbstractType
                 'property'     => 'name',
                 'multiple'     => true
             ))
+            ->add('companyId', 'entity', array(
+                    'class'=>'Totalcan\DocumancerBundle\Entity\Company',
+                    'property'=>'title',
+                    'required' => false
+            ))
             //->add('date')
         ;
 
