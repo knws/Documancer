@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * User
  *
  * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Totalcan\DocumancerBundle\Entity\UserRepository")
  */
 class User implements UserInterface, \Serializable
@@ -341,5 +342,13 @@ class User implements UserInterface, \Serializable
     public function getDesigns()
     {
         return $this->designs;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setDateValue()
+    {
+        $this->date = new \DateTime();
     }
 }

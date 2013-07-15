@@ -14,7 +14,7 @@ class CompanyType extends AbstractType
             ->add('title')
             ->add('variables')
             ->add('parent')
-            ->add('date')
+            //->add('date')
         ;
     }
 

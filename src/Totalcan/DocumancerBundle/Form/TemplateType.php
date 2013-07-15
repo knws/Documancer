@@ -22,7 +22,7 @@ class TemplateType extends AbstractType
             ->add('title')
             ->add('template')
             ->add('variables')
-            ->add('date')
+            //->add('date')
             ->add('userId', 'entity', array('class'=>'Totalcan\DocumancerBundle\Entity\User', 'property'=>'username' ))
         ;
     }

@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Client
  *
  * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Totalcan\DocumancerBundle\Entity\ClientRepository")
  */
 class Client
@@ -34,6 +35,7 @@ class Client
      * @ORM\Column(name="variables", type="text")
      */
     private $variables;
+
 
     /**
      * @var \DateTime
@@ -179,17 +181,25 @@ class Client
     public function setExId($exId)
     {
         $this->exId = $exId;
-    
+
         return $this;
     }
 
     /**
      * Get exId
      *
-     * @return string 
+     * @return string
      */
     public function getExId()
     {
         return $this->exId;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setDateValue()
+    {
+        $this->date = new \DateTime();
     }
 }

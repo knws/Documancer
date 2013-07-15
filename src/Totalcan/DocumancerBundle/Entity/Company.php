@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Company
  *
  * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Totalcan\DocumancerBundle\Entity\CompanyRepository")
  */
 class Company
@@ -137,17 +138,25 @@ class Company
     public function setParent($parent)
     {
         $this->parent = $parent;
-    
+
         return $this;
     }
 
     /**
      * Get parent
      *
-     * @return integer 
+     * @return integer
      */
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setDateValue()
+    {
+        $this->date = new \DateTime();
     }
 }

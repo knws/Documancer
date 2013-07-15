@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Template
  *
  * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Totalcan\DocumancerBundle\Entity\TemplateRepository")
  */
 class Template
@@ -210,17 +211,25 @@ class Template
     public function setUserId(\Totalcan\DocumancerBundle\Entity\User $userId = null)
     {
         $this->userId = $userId;
-    
+
         return $this;
     }
 
     /**
      * Get userId
      *
-     * @return \Totalcan\DocumancerBundle\Entity\User 
+     * @return \Totalcan\DocumancerBundle\Entity\User
      */
     public function getUserId()
     {
         return $this->userId;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setDateValue()
+    {
+        $this->date = new \DateTime();
     }
 }

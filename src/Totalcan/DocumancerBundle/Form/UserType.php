@@ -15,12 +15,12 @@ class UserType extends AbstractType
     {
         $this->securityContext = $securityContext;
     }
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('variables')
-            ->add('date')
+            //->add('date')
         ;
 
         /*

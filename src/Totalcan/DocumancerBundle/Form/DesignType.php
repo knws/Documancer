@@ -22,7 +22,7 @@ class DesignType extends AbstractType
             ->add('design')
             ->add('variables')
             ->add('title')
-            ->add('date')
+            //->add('date')
             ->add('userId', 'entity', array('class'=>'Totalcan\DocumancerBundle\Entity\User', 'property'=>'username' ))
         ;
     }

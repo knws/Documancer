@@ -24,7 +24,8 @@ class DocumentType extends AbstractType
             ->add('title', 'text', array('label' => 'Название документа') )
             ->add('variables', 'textarea', array('label' => 'Переменные') )
             ->add('template', 'textarea', array('label' => 'Шаблон'))
-            ->add('date', null);
+            //->add('date', null)
+            ;
 
         if (true === $this->securityContext->isGranted('ROLE_SUPER_ADMIN')) {
             $builder

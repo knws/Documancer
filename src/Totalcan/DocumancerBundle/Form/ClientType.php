@@ -21,7 +21,7 @@ class ClientType extends AbstractType
         $builder
             ->add('variables', 'text', array(
                 'label' => 'Переменные'))
-            ->add('date')
+            //->add('date')
             ->add('userId', 'entity', array('class'=>'Totalcan\DocumancerBundle\Entity\User', 'property'=>'username' ))
             ->add('exId')
 
