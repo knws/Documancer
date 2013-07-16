@@ -87,12 +87,10 @@ border-radius: 6px;
         </div>
       </div>
     </div>
-
-    <div class="container">
-    {% if error is defined and error%}
-        <div class="error">{{ error.message }}</div>
-    {% endif %}
-    </div>
+{% for flashMessage in app.session.flashbag.get('notice') %}
+{{ flashMessage }}
+{% endfor %}
+</div>
 {% endblock %}
 
 

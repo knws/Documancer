@@ -1,8 +1,15 @@
 {% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
 
 {% block content %}
+{# Проверяем на какой стадии формирование документа, если шаг 1 #}
+{% if clients is defined and clients%}
+{{clients.getVariables()}} <br>
+{% else %}
+{# Если шаг 0 #}
 <h4>Шаг 0. Создаем нового клиента.</h4>
 <br>
+{% endif %}
+
 <h4>Шаг 1. Формируем данные клиента, добавляем при необходимости переменные.</h4>
 <br>
 <h4>Шаг 2. Выбираем оформление документа или создаем новое.</h4>

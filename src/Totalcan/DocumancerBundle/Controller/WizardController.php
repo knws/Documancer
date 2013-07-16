@@ -2,14 +2,24 @@
 
 namespace Totalcan\DocumancerBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Totalcan\DocumancerBundle\Model\Wizard;
 
 class WizardController extends Controller
 {
     public function wizardAction()
     {
+        $session = $this->getRequest()->getSession();
+        $session->set('step', '0');
+
+        $this->get('session')->getFlashBag()->add(
+            'notice',
+            'Step '.$session->get('step')
+        );
+
         return $this->render('TotalcanDocumancerBundle:Wizard:wizard.html.twig', array(
 
        ));
@@ -24,42 +34,43 @@ class WizardController extends Controller
 
     public function clientIdAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
+        $step = Wizard::getStep($this->get('session'));
 
-        $usr= $this->get('security.context')->getToken()->getUser();
-        //$clients = $em->getRepository('TotalcanDocumancerBundle:Client')->findByUserIdAndClientId($usr->getId(), $id);
-        $clients = $em->getRepository('TotalcanDocumancerBundle:Client')->find($id);
-        $designs = $em->getRepository('TotalcanDocumancerBundle:Design')->findByUserId(1);
+        $em = $this->getDoctrine()->getManager();
+
+        $clients    = $em->getRepository('TotalcanDocumancerBundle:Client')->find($id);
+
         $form = $this->createForm($this->get('form.type.client'), $clients);
 
         $engine = $this->container->get('templating');
         $clientForm = $engine->render('TotalcanDocumancerBundle:Wizard:clientForm.html.twig', array( 'form' => $form->createView()));
 
-        for($i=0; $i<=sizeof($designs)-1; $i++) {
-            $designsArray[] = array(
-                'id' => $designs[$i]->getId(),
-                'variables' => $designs[$i]->getVariables(),
-                'design' => $designs[$i]->getDesign(),
-                'date' => $designs[$i]->getDate(),
-                'title' => $designs[$i]->getTitle()
-            );
-        }
-
         return $this->render('TotalcanDocumancerBundle:Wizard:client.html.twig', array(
-//            'client' => $clientsArray,
             'clientForm' => $clientForm,
 
-            'users' => $users,
-            'designs' => $designsArray
-
+            'clients' => $clients,
        ));
     }
 
     public function designAction()
     {
-        return $this->render('TotalcanDocumancerBundle:Wizard:design.html.twig', array(
+        $em = $this->getDoctrine()->getManager();
 
+//        $clients    = $em->getRepository('TotalcanDocumancerBundle:Client')->find($id);
+        $designs    = $em->getRepository('TotalcanDocumancerBundle:Design')->findByUserId(1);
+//        $templates  = $em->getRepository('TotalcanDocumancerBundle:Template')->findByUserId(1);
+
+//        $form = $this->createForm($this->get('form.type.client'), $clients);
+
+//        $engine = $this->container->get('templating');
+//        $clientForm = $engine->render('TotalcanDocumancerBundle:Wizard:clientForm.html.twig', array( 'form' => $form->createView()));
+
+        return $this->render('TotalcanDocumancerBundle:Wizard:design.html.twig', array(
+//            'clientForm' => $clientForm,
+//
+//            'client' => $clients,
+            'designs' => $designs,
+//            'templates' => $templates,
        ));
     }
 
