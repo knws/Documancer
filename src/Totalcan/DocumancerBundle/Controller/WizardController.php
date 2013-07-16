@@ -15,7 +15,14 @@ class WizardController extends Controller
        ));
     }
 
-    public function clientAction($id)
+    public function clientAction()
+    {
+        return $this->render('TotalcanDocumancerBundle:Wizard:client.html.twig', array(
+
+       ));
+    }
+
+    public function clientIdAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
@@ -45,13 +52,6 @@ class WizardController extends Controller
 
             'users' => $users,
             'designs' => $designsArray
-
-       ));
-    }
-
-    public function clientIdAction($id)
-    {
-        return $this->render('TotalcanDocumancerBundle:Wizard:client.html.twig', array(
 
        ));
     }

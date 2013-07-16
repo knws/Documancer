@@ -15,6 +15,12 @@ logout:
     pattern:  /logout
     defaults: { _controller: TotalcanDocumancerBundle:Admin:logout }
 
+
+document:
+    pattern:  /document/{id}
+    requirements:
+        id:  \d+
+    defaults: { _controller: TotalcanDocumancerBundle:Document:document }
 document_list:
     pattern:  /document/list
     defaults: { _controller: TotalcanDocumancerBundle:Document:list }
@@ -32,7 +38,7 @@ document_delete:
         id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Document:delete }
 document_show:
-    pattern:  /document/{id}
+    pattern:  /document/show/{id}
     requirements:
         id:  \d+
     defaults: { _controller: TotalcanDocumancerBundle:Document:show }

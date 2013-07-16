@@ -13,10 +13,7 @@ class FrontpageController extends Controller
 {
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $users = $em->getRepository('TotalcanDocumancerBundle:User')->getUsersList();
-
-        return $this->render('TotalcanDocumancerBundle:Frontpage:index.html.twig', array( 'users' => $users
+        return $this->render('TotalcanDocumancerBundle:Wizard:wizard.html.twig', array( 
         ));
     }
 }
