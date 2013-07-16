@@ -16,17 +16,43 @@ $(document).ready(function(){
        return false;
    });
 
-   $('#newUserButton').click(function(){
-       $('#newUserForm').stop().slideToggle();
+   $('#newClientButton').click(function(){
+       $('#newClientForm').stop().slideToggle();
    });
 
-   $('#loadUserButton').click(function(){
+   $('#loadClientButton').click(function(){
        window.location = 'http://mancer.ru/app_dev.php/wizard/client/'+$('#appendedInputButton').val();
        return false;
    });
 
-   $('#editUserButton').click(function(){
-       $('#editUserForm').stop().slideToggle();
+   $('#editClientButton').click(function(){
+       $('#editClientForm').stop().slideToggle();
+   });
+
+   $('#newDesignButton').click(function(){
+       $('#newDesignForm').stop().slideToggle();
+   });
+
+   $('#loadDesignButton').click(function(){
+       window.location = 'http://mancer.ru/app_dev.php/wizard/client/'+$('#appendedInputButton').val();
+       return false;
+   });
+
+   $('#editDesignButton').click(function(){
+       $('#editDesignForm').stop().slideToggle();
+   });
+
+   $('#newTemplateButton').click(function(){
+       $('#newTemplateForm').stop().slideToggle();
+   });
+
+   $('#loadTemplateButton').click(function(){
+       window.location = 'http://mancer.ru/app_dev.php/wizard/client/'+$('#appendedInputButton').val();
+       return false;
+   });
+
+   $('#editTemplateButton').click(function(){
+       $('#editTemplateForm').stop().slideToggle();
    });
 
 });
