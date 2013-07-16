@@ -1,0 +1,13 @@
+<div id="designForm">
+    <form class="form-horizontal"  action="{% if designs.id is defined and designs.id%}{{ path('wizard_design_id', {'id': designs.id}) }}{% else %}{{ path('wizard_design') }}{% endif %}" method="post" {{ form_enctype(form) }}>
+  <div class="control-group">
+
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+      <br>
+    <div class="control-group">
+       <button class="btn btn-success">Save</button>
+    </div>
+  </div>
+</form>
+</div>

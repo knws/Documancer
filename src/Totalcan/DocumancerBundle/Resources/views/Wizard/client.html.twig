@@ -34,16 +34,35 @@
 {% elseif app.session.get('clientId') > 0 %}
     {# Отображаем созданного клиента #}
     <h4>Шаг 1. Формируем данные клиента, добавляем при необходимости переменные.</h4>
-    {% if clients is defined and clients%}
-        {{clients.getVariables()}} <br>
+    {% if clientForm is defined and clientForm%}
+    <span>Выбран клиент: {{clients.title}}</span>
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <button class="btn btn-warning" id="editUserButton">View data</button>
+        </div>
+    </div>
+    <div id="editUserForm" class="hide">
+        {{clientForm|raw}}
+    </div>
     {% endif %}
-    <br>
     {% if app.session.get('designId') == 0 %}
         <h4>Шаг 2. Выбираем оформление документа или создаем новое.</h4>
         <br>
 
     {% elseif app.session.get('designId') > 0 %}
         {# Если дизайн уже задан, проверяем текст #}
+        {% if designs is defined and designs%}
+            <span>Выбран клиент: {{designs.title}}</span>
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <button class="btn btn-warning" id="editUserButton">View data</button>
+                </div>
+            </div>
+            <div id="editUserForm" class="hide">
+                {{designForm|raw}}
+            </div>
+        {% endif %}
+        <br>
         {% if app.session.get('templateId') == 0 %}
             <h4>Шаг 3. Выбираем шаблон текста или создаем новый.</h4>
             <br>

@@ -19,5 +19,15 @@ $(document).ready(function(){
    $('#newUserButton').click(function(){
        $('#newUserForm').stop().slideToggle();
    });
+
+   $('#loadUserButton').click(function(){
+       window.location = 'http://mancer.ru/app_dev.php/wizard/client/'+$('#appendedInputButton').val();
+       return false;
+   });
+
+   $('#editUserButton').click(function(){
+       $('#editUserForm').stop().slideToggle();
+   });
+
 });
 

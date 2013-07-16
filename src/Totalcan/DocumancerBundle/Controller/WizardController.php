@@ -2,12 +2,12 @@
 
 namespace Totalcan\DocumancerBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use Totalcan\DocumancerBundle\Model\Wizard;
 use Totalcan\DocumancerBundle\Entity\Client;
+use Totalcan\DocumancerBundle\Entity\Design;
+use Totalcan\DocumancerBundle\Entity\Template;
 
 use Totalcan\DocumancerBundle\Form\ClientType;
 
@@ -65,62 +65,57 @@ class WizardController extends Controller
     {
         $this->get('session')->set('clientId', $id);
 
-        $step = Wizard::getStep($this->get('session'));
         $em = $this->getDoctrine()->getManager();
+
+        $client = new Client();
+        $form = $this->createForm($this->get('form.type.client'), $client);
+
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($client);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('wizard_client_id', array('id' => $client->getId())));
+            }
+        }
+        
+        $step = Wizard::getStep($this->get('session'));
+
         $clients = $em->getRepository('TotalcanDocumancerBundle:Client')->find($id);
         $form = $this->createForm($this->get('form.type.client'), $clients);
 
         $engine = $this->container->get('templating');
-        $clientForm = $engine->render('TotalcanDocumancerBundle:Wizard:clientForm.html.twig', array( 'form' => $form->createView()));
+        $clientForm = $engine->render('TotalcanDocumancerBundle:Wizard:clientForm.html.twig', array( 'form' => $form->createView(), 'clients' => $clients));
 
         return $this->render('TotalcanDocumancerBundle:Wizard:client.html.twig', array(
             'clientForm' => $clientForm,
-
             'clients' => $clients,
        ));
     }
 
     public function designAction()
     {
-        $em = $this->getDoctrine()->getManager();
 
-//        $clients    = $em->getRepository('TotalcanDocumancerBundle:Client')->find($id);
-        $designs    = $em->getRepository('TotalcanDocumancerBundle:Design')->findByUserId(1);
-//        $templates  = $em->getRepository('TotalcanDocumancerBundle:Template')->findByUserId(1);
-
-//        $form = $this->createForm($this->get('form.type.client'), $clients);
-
-//        $engine = $this->container->get('templating');
-//        $clientForm = $engine->render('TotalcanDocumancerBundle:Wizard:clientForm.html.twig', array( 'form' => $form->createView()));
-
-        return $this->render('TotalcanDocumancerBundle:Wizard:design.html.twig', array(
-//            'clientForm' => $clientForm,
-//
-//            'client' => $clients,
-            'designs' => $designs,
-//            'templates' => $templates,
-       ));
     }
 
     public function designIdAction($id)
     {
-        return $this->render('TotalcanDocumancerBundle:Wizard:design.html.twig', array(
 
-       ));
     }
 
     public function templateAction()
     {
-        return $this->render('TotalcanDocumancerBundle:Wizard:template.html.twig', array(
 
-       ));
     }
 
     public function templateIdAction($id)
     {
-        return $this->render('TotalcanDocumancerBundle:Wizard:template.html.twig', array(
 
-       ));
     }
 
 }
