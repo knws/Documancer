@@ -49,20 +49,23 @@ border-radius: 6px;
                 </ul>
               </li>
               {% if app.user.username is defined and app.user.username%}
-              {% if is_granted('ROLE_SUPER_ADMIN') %}
+              {% if is_granted('ROLE_COMPANY_ADMIN') %}
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Операторы <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li class="nav-header">Управление</li>
                   <li><a href="{{ path('user_list')}}">Все пользователи</a></li>
                   <li><a href="{{ path('role_list')}}">Группы пользователей</a></li>
+                  {% if is_granted('ROLE_SUPER_ADMIN') %}
                   <li class="divider"></li>
                   <li class="nav-header">Вход от имени:</li>
                   <li class="text-center"><form class="form-inline"><input id="switch_user" class="span2" type="text">&nbsp;<button id="switch_user_submit" class="btn btn-success btn-small">Go</button></form></li>
+                  {% if users is defined and users%}
                   {% for user in users %}
                   <li><a href="{{ path('homepage') }}?_change_user={{user.username}}">{{user.username}}</a></li>
                   {% endfor %}
-
+                  {% endif %}
+                  {% endif %}
                 </ul>
               </li>
               {% endif %}

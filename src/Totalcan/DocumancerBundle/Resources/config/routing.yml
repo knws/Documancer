@@ -154,13 +154,35 @@ wizard:
     defaults: { _controller: TotalcanDocumancerBundle:Wizard:wizard }
 
 wizard_client:
-    pattern:  /wizard/client/{id}
+    pattern:  /wizard/client
     defaults: { _controller: TotalcanDocumancerBundle:Wizard:client }
+
+wizard_client_id:
+    pattern:  /wizard/client/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Wizard:clientId }
     requirements:
         id:  \d+
 
 wizard_design:
-    pattern:  /wizard/design/{id}
+    pattern:  /wizard/design
     defaults: { _controller: TotalcanDocumancerBundle:Wizard:design }
+    requirements:
+        id:  \d+
+
+wizard_design_id:
+    pattern:  /wizard/design/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Wizard:designId }
+    requirements:
+        id:  \d+
+
+wizard_template:
+    pattern:  /wizard/template
+    defaults: { _controller: TotalcanDocumancerBundle:Wizard:template }
+    requirements:
+        id:  \d+
+
+wizard_template_id:
+    pattern:  /wizard/template/{id}
+    defaults: { _controller: TotalcanDocumancerBundle:Wizard:templateId }
     requirements:
         id:  \d+
