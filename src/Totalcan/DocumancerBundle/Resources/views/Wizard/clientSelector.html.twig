@@ -1,11 +1,11 @@
 {% if app.session.get('clientId') == 0 %}
-    <h4>Шаг N. Создаем новый дизайн или выбираем из списка.</h4>
+    <h4>Шаг N. Создаем нового клиента или выбираем из списка.</h4>
     {% if clients is defined and clients%}
     <div class="btn-toolbar">
         <div class="btn-group">
             <div class="input-append">
             <form>
-            <select name="clientId" id="appendedInputButton" >
+            <select name="clientId" id="listClientButton" >
                 {% for client in clients %}
                     <option value="{{client.id}}">{{client.title}}</option>
                 {% endfor %}
@@ -28,8 +28,7 @@
     <br>
 {% elseif app.session.get('clientId') > 0 %}
     {# Отображаем созданного клиента #}
-    <h4>Шаг N+!
-        . Формируем данные клиента, добавляем при необходимости переменные.</h4>
+    <h4>Шаг N+1. Формируем данные клиента, добавляем при необходимости переменные.</h4>
     {% if clientForm is defined and clientForm%}
     <span>Выбран клиент: {{clients.title}}</span>
     <div class="btn-toolbar">

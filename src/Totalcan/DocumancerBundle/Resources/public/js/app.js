@@ -21,7 +21,7 @@ $(document).ready(function(){
    });
 
    $('#loadClientButton').click(function(){
-       window.location = 'http://mancer.ru/app_dev.php/wizard/client/'+$('#appendedInputButton').val();
+       window.location = 'http://mancer.ru/app_dev.php/wizard/client/'+$('#listClientButton').val();
        return false;
    });
 
@@ -34,7 +34,7 @@ $(document).ready(function(){
    });
 
    $('#loadDesignButton').click(function(){
-       window.location = 'http://mancer.ru/app_dev.php/wizard/client/'+$('#appendedInputButton').val();
+       window.location = 'http://mancer.ru/app_dev.php/wizard/design/'+$('#listDesignButton').val();
        return false;
    });
 
@@ -47,7 +47,7 @@ $(document).ready(function(){
    });
 
    $('#loadTemplateButton').click(function(){
-       window.location = 'http://mancer.ru/app_dev.php/wizard/client/'+$('#appendedInputButton').val();
+       window.location = 'http://mancer.ru/app_dev.php/wizard/template/'+$('#listTemplateButton').val();
        return false;
    });
 

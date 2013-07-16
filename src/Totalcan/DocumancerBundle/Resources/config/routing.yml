@@ -164,8 +164,8 @@ wizard_client:
     defaults: { _controller: TotalcanDocumancerBundle:Wizard:client }
 
 wizard_client_id:
-    pattern:  /wizard/client/{id}
-    defaults: { _controller: TotalcanDocumancerBundle:Wizard:clientId }
+    pattern:  /wizard/client/{id}{ajax}
+    defaults: { _controller: TotalcanDocumancerBundle:Wizard:clientId, ajax: asd  }
     requirements:
         id:  \d+
 
@@ -176,8 +176,8 @@ wizard_design:
         id:  \d+
 
 wizard_design_id:
-    pattern:  /wizard/design/{id}
-    defaults: { _controller: TotalcanDocumancerBundle:Wizard:designId }
+    pattern:  /wizard/design/{id}{ajax}
+    defaults: { _controller: TotalcanDocumancerBundle:Wizard:designId, ajax: asd   }
     requirements:
         id:  \d+
 
@@ -188,7 +188,7 @@ wizard_template:
         id:  \d+
 
 wizard_template_id:
-    pattern:  /wizard/template/{id}
-    defaults: { _controller: TotalcanDocumancerBundle:Wizard:templateId }
+    pattern:  /wizard/template/{id}{ajax}
+    defaults: { _controller: TotalcanDocumancerBundle:Wizard:templateId, ajax: asd   }
     requirements:
         id:  \d+

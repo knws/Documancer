@@ -1,6 +1,35 @@
 {% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
 
 {% block content %}
+{#
+{% include "TotalcanDocumancerBundle:Wizard:clientSelector.html.twig" %}
+{% include "TotalcanDocumancerBundle:Wizard:designSelector.html.twig" %}
+{% include "TotalcanDocumancerBundle:Wizard:templateSelector.html.twig" %}
+#}
+{% if app.session.get('clientId') == 0 %}
+    {{ render(controller('TotalcanDocumancerBundle:Wizard:client')) }}
+{% else %}
+    {{ render(controller('TotalcanDocumancerBundle:Wizard:clientId', { 'id': app.session.get('clientId'), 'ajax': 'ajax' })) }}
+{% endif %}
+
+{% if app.session.get('designId') == 0 %}
+    {{ render(controller('TotalcanDocumancerBundle:Wizard:design')) }}
+{% else %}
+    {{ render(controller('TotalcanDocumancerBundle:Wizard:designId', { 'id': app.session.get('designId'), 'ajax': 'ajax' })) }}
+{% endif %}
+
+{% if app.session.get('templateId') == 0 %}
+    {{ render(controller('TotalcanDocumancerBundle:Wizard:template')) }}
+{% else %}
+    {{ render(controller('TotalcanDocumancerBundle:Wizard:templateId', { 'id': app.session.get('templateId'), 'ajax': 'ajax' })) }}
+{% endif %}
+
+{% if app.session.get('templateId') > 0 and app.session.get('clientId') > 0 and app.session.get('designId') > 0 %}
+    Предпросмотр документа.<br>
+    Создать документ.<br>
+{% endif %}
+
+{#
 <h4>Шаг 0. Определяем порядок создания документа.</h4>
 Возможность выбрать с чего начать:<br>
 клиент,<br>
@@ -14,5 +43,5 @@
 <br>
 <h4>Шаг 2. Возвращаемся с подмастера с готовым документом.</h4>
 Возможность распечатать в браузере, сохранить в пдф или дать ссылку.
-<br>
+<br>#}
 {% endblock %}
