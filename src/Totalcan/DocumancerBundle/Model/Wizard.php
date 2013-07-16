@@ -26,7 +26,7 @@ class Wizard
 
         $session->getFlashBag()->add(
             'notice',
-            'Step '.$session->get('step')
+            'Step '.$session->get('step').' template: '.$session->get('templateId').' design: '.$session->get('designId').' client: '.$session->get('clientId')
         );
 
         return $session->get('step');

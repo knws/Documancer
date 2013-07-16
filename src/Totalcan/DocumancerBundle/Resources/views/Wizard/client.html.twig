@@ -5,8 +5,31 @@
 {% if app.session.get('clientId') == 0 %}
     {# Создаем нового клиента, возможность выбрать существующего #}
     <h4>Шаг 0. Создаем нового клиента или выбираем из списка.</h4>
-    <br>
-    <h4>Шаг 1. Формируем данные клиента, добавляем при необходимости переменные.</h4>
+    {% if clients is defined and clients%}
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <div class="input-append">
+            <form>
+            <select name="clientId" id="appendedInputButton" >
+                {% for client in clients %}
+                    <option value="{{client.id}}">{{client.title}}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-success" id="loadUserButton">Choose</button>
+            </form>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-warning" id="newUserButton">New client</button>
+        </div>
+    </div>
+
+        {% if clientForm is defined and clientForm%}
+        <div id="newUserForm" class="hide">
+            {{clientForm|raw}}
+        </div>
+        {% endif %}
+    {% endif %}
     <br>
 {% elseif app.session.get('clientId') > 0 %}
     {# Отображаем созданного клиента #}

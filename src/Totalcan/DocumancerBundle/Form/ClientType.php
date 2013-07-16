@@ -19,6 +19,7 @@ class ClientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('title')
             ->add('variables', 'text', array(
                 'label' => 'Переменные'))
             //->add('date')

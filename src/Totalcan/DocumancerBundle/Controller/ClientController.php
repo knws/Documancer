@@ -29,6 +29,7 @@ class ClientController extends Controller
         for($i=0; $i<=sizeof($clients)-1; $i++) {
             $clientsArray[] = array(
                 'id' => $clients[$i]->getId(),
+                'title' => $clients[$i]->getTitle(),
                 'variables' => $clients[$i]->getVariables(),
                 'date' => $clients[$i]->getDate(),
                 'userId' => $clients[$i]->getUserId()->getUsername(),
