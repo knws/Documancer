@@ -8,25 +8,21 @@ class Wizard
 
     static public function getStep($session)
     {
-        if($session->get('step') == 0) {
-            $session->set('step', '1');
-        } else {
-            $i = 1;
+        $i = 1;
 
-            if($session->get('templateId')>0) {
-                $i++;
-            }
-
-            if($session->get('designId')>0) {
-                $i++;
-            }
-
-            if($session->get('clientId')>0) {
-                $i++;
-            }
-
-            $session->set('step', $i);
+        if($session->get('templateId')>0) {
+            $i++;
         }
+
+        if($session->get('designId')>0) {
+            $i++;
+        }
+
+        if($session->get('clientId')>0) {
+            $i++;
+        }
+
+        $session->set('step', $i);
 
         $session->getFlashBag()->add(
             'notice',

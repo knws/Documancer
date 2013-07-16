@@ -12,13 +12,10 @@ class WizardController extends Controller
 {
     public function wizardAction()
     {
-        $session = $this->getRequest()->getSession();
-        $session->set('step', '0');
-
-        $this->get('session')->getFlashBag()->add(
-            'notice',
-            'Step '.$session->get('step')
-        );
+        $this->get('session')->set('templateId', '0');
+        $this->get('session')->set('designId', '0');
+        $this->get('session')->set('clientId', '0');
+        $step = Wizard::getStep($this->get('session'));
 
         return $this->render('TotalcanDocumancerBundle:Wizard:wizard.html.twig', array(
 
@@ -27,6 +24,7 @@ class WizardController extends Controller
 
     public function clientAction()
     {
+        $this->get('session')->set('clientId', '0');
         return $this->render('TotalcanDocumancerBundle:Wizard:client.html.twig', array(
 
        ));
@@ -34,12 +32,11 @@ class WizardController extends Controller
 
     public function clientIdAction($id)
     {
+        $this->get('session')->set('clientId', $id);
+
         $step = Wizard::getStep($this->get('session'));
-
         $em = $this->getDoctrine()->getManager();
-
-        $clients    = $em->getRepository('TotalcanDocumancerBundle:Client')->find($id);
-
+        $clients = $em->getRepository('TotalcanDocumancerBundle:Client')->find($id);
         $form = $this->createForm($this->get('form.type.client'), $clients);
 
         $engine = $this->container->get('templating');
