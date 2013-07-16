@@ -2,8 +2,9 @@
 
 {% block content %}
 <a class="btn btn-primary" href="{{ path('client_list') }}">Back to client list</a><br><br>
-<h4>1. Создание документа для клиента: {{ client.id}} </h4>
-<p>Данные: {{ client.variables}} </p>
+<h4>1. Создание документа для клиента:  </h4>
+{{clientForm|raw}}
+<p>Данные:  </p>
 <form class="form-horizontal"  action="{{ path('client_list' ) }}" method="post">
   <div class="control-group">
 <h4>2. Выбрать дизайн:

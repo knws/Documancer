@@ -15,17 +15,22 @@ class WizardController extends Controller
 
         $usr= $this->get('security.context')->getToken()->getUser();
         //$clients = $em->getRepository('TotalcanDocumancerBundle:Client')->findByUserIdAndClientId($usr->getId(), $id);
-        $clients = $em->getRepository('TotalcanDocumancerBundle:Client')->findByUserIdAndClientId(1, $id);
+        $clients = $em->getRepository('TotalcanDocumancerBundle:Client')->find($id);
         $designs = $em->getRepository('TotalcanDocumancerBundle:Design')->findByUserId(1);
+//
+//        $clientsArray = array(
+//            'id' => $clients[0]->getId(),
+//            //'variables' => json_decode($clients[0]->getVariables(), 1),
+//            'variables' => $clients[0]->getVariables(),
+//            'date' => $clients[0]->getDate(),
+//            'userId' => $clients[0]->getUserId()->getUsername(),
+//            'exId' => $clients[0]->getExId(),
+//        );
 
-        $clientsArray = array(
-            'id' => $clients[0]->getId(),
-            //'variables' => json_decode($clients[0]->getVariables(), 1),
-            'variables' => $clients[0]->getVariables(),
-            'date' => $clients[0]->getDate(),
-            'userId' => $clients[0]->getUserId()->getUsername(),
-            'exId' => $clients[0]->getExId(),
-        );
+        $form = $this->createForm($this->get('form.type.clientAjax'), $clients);
+
+        $engine = $this->container->get('templating');
+        $clientForm = $engine->render('TotalcanDocumancerBundle:Wizard:clientForm.html.twig', array( 'form' => $form->createView()));
 
         for($i=0; $i<=sizeof($designs)-1; $i++) {
             $designsArray[] = array(
@@ -38,7 +43,9 @@ class WizardController extends Controller
         }
 
         return $this->render('TotalcanDocumancerBundle:Wizard:client.html.twig', array(
-            'client' => $clientsArray,
+//            'client' => $clientsArray,
+            'clientForm' => $clientForm,
+
             'users' => $users,
             'designs' => $designsArray
 
