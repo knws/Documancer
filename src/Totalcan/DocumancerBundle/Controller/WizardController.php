@@ -173,18 +173,21 @@ class WizardController extends Controller
             }
         }
 
-        $clients = $em->getRepository('TotalcanDocumancerBundle:Client')->find($id);
-        $form = $this->createForm($this->get('form.type.client'), $clients);
+        $client = $em->getRepository('TotalcanDocumancerBundle:Client')->find($id);
+        $form = $this->createForm($this->get('form.type.client'), $client);
 
         $engine = $this->container->get('templating');
-        $clientForm = $engine->render('TotalcanDocumancerBundle:Wizard:clientForm.html.twig', array( 'form' => $form->createView(), 'clients' => $clients));
+        $clientForm = $engine->render('TotalcanDocumancerBundle:Wizard:clientForm.html.twig', array( 'form' => $form->createView(), 'clients' => $client));
+
+        $clients = $em->getRepository('TotalcanDocumancerBundle:Client')->findByUserId(1);
 
         $sel = ($ajax == 'ajax') ? 'Selector' : '';
 
         return $this->render('TotalcanDocumancerBundle:Wizard:client'.$sel.'.html.twig', array(
-                'clientForm' => $clientForm,
-                'clients' => $clients,
-            ));
+            'clientForm' => $clientForm,
+            'client' => $client, // Массив данных по текущему клиенту
+            'clients' => $clients, // Массив данных для формирования селекта
+       ));
     }
 
 
@@ -247,16 +250,19 @@ class WizardController extends Controller
             }
         }
 
-        $designs = $em->getRepository('TotalcanDocumancerBundle:Design')->find($id);
-        $form = $this->createForm($this->get('form.type.design'), $designs);
+        $design = $em->getRepository('TotalcanDocumancerBundle:Design')->find($id);
+        $form = $this->createForm($this->get('form.type.design'), $design);
 
         $engine = $this->container->get('templating');
-        $designForm = $engine->render('TotalcanDocumancerBundle:Wizard:designForm.html.twig', array( 'form' => $form->createView(), 'designs' => $designs));
+        $designForm = $engine->render('TotalcanDocumancerBundle:Wizard:designForm.html.twig', array( 'form' => $form->createView(), 'designs' => $design));
+
+        $designs = $em->getRepository('TotalcanDocumancerBundle:Design')->findByUserId(1);
 
         $sel = ($ajax == 'ajax') ? 'Selector' : '';
 
         return $this->render('TotalcanDocumancerBundle:Wizard:design'.$sel.'.html.twig', array(
             'designForm' => $designForm,
+            'design' => $design,
             'designs' => $designs,
        ));
     }
@@ -320,16 +326,19 @@ class WizardController extends Controller
             }
         }
 
-        $templates = $em->getRepository('TotalcanDocumancerBundle:Template')->find($id);
-        $form = $this->createForm($this->get('form.type.template'), $templates);
+        $template = $em->getRepository('TotalcanDocumancerBundle:Template')->find($id);
+        $form = $this->createForm($this->get('form.type.template'), $template);
 
         $engine = $this->container->get('templating');
-        $templateForm = $engine->render('TotalcanDocumancerBundle:Wizard:templateForm.html.twig', array( 'form' => $form->createView(), 'templates' => $templates));
+        $templateForm = $engine->render('TotalcanDocumancerBundle:Wizard:templateForm.html.twig', array( 'form' => $form->createView(), 'templates' => $template));
+
+        $templates = $em->getRepository('TotalcanDocumancerBundle:Design')->findByUserId(1);
 
         $sel = ($ajax == 'ajax') ? 'Selector' : '';
 
         return $this->render('TotalcanDocumancerBundle:Wizard:template'.$sel.'.html.twig', array(
             'templateForm' => $templateForm,
+            'template' => $template,
             'templates' => $templates,
        ));
     }
