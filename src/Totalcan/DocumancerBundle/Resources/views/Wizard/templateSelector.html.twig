@@ -27,9 +27,9 @@
     {% endif %}
     <br>
 {% elseif app.session.get('templateId') > 0 %}
-    <h4>Изменить текст.</h4>
+    <h4>Текст документа:</h4>
     {% if templateForm is defined and templateForm%}
-    <span>Выбран клиент: {{templates.title}}</span>
+    <span>{{templates.title}}</span>
     <div class="btn-toolbar">
         <div class="btn-group">
             <button class="btn btn-warning" id="editTemplateButton">View data</button>
