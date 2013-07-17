@@ -40,18 +40,23 @@ class WizardController extends Controller
 
         $data = array();
         $var = json_decode($template1->getVariables(), 1);
+        if(is_array($var))
         foreach ( $var as $key => $val) {
             $data[$key] = $val;
         }
 
-        foreach (json_decode($client1->getVariables(), 1) as $key => $val) {
+        $var = json_decode($client1->getVariables(), 1);
+        if(is_array($var))
+        foreach ($var as $key => $val) {
             $data[$key] = $val;
         }
 
         $env = new \Twig_Environment(new \Twig_Loader_String());
         $data['TEMPLATE'] = $env->render( $template, $data);
 
-        foreach (json_decode($design1->getVariables(), 1) as $key => $val) {
+        $var = json_decode($design1->getVariables(), 1);
+        if(is_array($var))
+        foreach ($var as $key => $val) {
             $data[$key] = $val;
         }
 
@@ -75,18 +80,23 @@ class WizardController extends Controller
 
         $data = array();
         $var = json_decode($template1->getVariables(), 1);
+        if(is_array($var))
         foreach ( $var as $key => $val) {
             $data[$key] = $val;
         }
 
-        foreach (json_decode($client1->getVariables(), 1) as $key => $val) {
+        $var = json_decode($client1->getVariables(), 1);
+        if(is_array($var))
+        foreach ($var as $key => $val) {
             $data[$key] = $val;
         }
 
         $env = new \Twig_Environment(new \Twig_Loader_String());
         $data['TEMPLATE'] = $env->render( $template, $data);
 
-        foreach (json_decode($design1->getVariables(), 1) as $key => $val) {
+        $var = json_decode($design1->getVariables(), 1);
+        if(is_array($var))
+        foreach ($var as $key => $val) {
             $data[$key] = $val;
         }
 

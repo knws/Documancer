@@ -33,12 +33,6 @@ class DocumentController extends Controller
             'id' => $document->getId(),
             'variables' => json_decode($document->getVariables(), 1),
             'template' => $document->getTemplate(),
-            'date' => $document->getDate(),
-            'userId' => $document->getUserId()->getUsername(),
-            'designId' => $document->getDesignId()->getTitle(),
-            'templateId' => $document->getTemplateId()->getTitle(),
-            'clientId' => $document->getClientId()->getVariables(),
-            'title' => $document->getTitle()
         );
 
         $env = new \Twig_Environment(new \Twig_Loader_String());
