@@ -1,11 +1,6 @@
 {% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
 
 {% block content %}
-{#
-{% include "TotalcanDocumancerBundle:Wizard:clientSelector.html.twig" %}
-{% include "TotalcanDocumancerBundle:Wizard:designSelector.html.twig" %}
-{% include "TotalcanDocumancerBundle:Wizard:templateSelector.html.twig" %}
-#}
 {% if app.session.get('clientId') == 0 %}
     {{ render(controller('TotalcanDocumancerBundle:Wizard:client', { 'ajax': 'ajax' })) }}
 {% else %}
@@ -25,20 +20,4 @@
 {% endif %}
 
 {% include "TotalcanDocumancerBundle:Wizard:save.html.twig" %}
-
-{#
-<h4>Шаг 0. Определяем порядок создания документа.</h4>
-Возможность выбрать с чего начать:<br>
-клиент,<br>
-текст,<br>
-оформление,<br>
-при необходимости, создать новые: клиент, текст, оформление.
-<h4>Шаг 1. В зависимости от шага 0, переходим на подмастера.</h4>
-<a href="{{ path('wizard_client')}}">wizard_client</a><br>
-<a href="{{ path('wizard_template')}}">wizard_template</a><br>
-<a href="{{ path('wizard_design')}}">wizard_design</a><br>
-<br>
-<h4>Шаг 2. Возвращаемся с подмастера с готовым документом.</h4>
-Возможность распечатать в браузере, сохранить в пдф или дать ссылку.
-<br>#}
 {% endblock %}

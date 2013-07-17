@@ -68,6 +68,7 @@ class WizardController extends Controller
         $design1 = $em->getRepository('TotalcanDocumancerBundle:Design')->find($session->get('designId'));
         $client1 = $em->getRepository('TotalcanDocumancerBundle:Client')->find($session->get('clientId'));
         $template1 = $em->getRepository('TotalcanDocumancerBundle:Template')->find($session->get('templateId'));
+        $user1 = $em->getRepository('TotalcanDocumancerBundle:User')->find(1);
 
         $design = $design1->getDesign();
         $template = $template1->getTemplate();
@@ -93,9 +94,10 @@ class WizardController extends Controller
         $document->setVariables(json_encode($data));
         $document->setTemplateId($template1);
         $document->setClientId($client1);
+        $document->setUserId($user1);
         $document->setDesignId($design1);
         $document->setTemplate($design);
-        $document->setTitle('test save');
+        $document->setTitle($this->get('request')->query->get('title'));
 
         $em->persist($document);
         $em->flush();
