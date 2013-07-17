@@ -3,6 +3,7 @@
 namespace Totalcan\DocumancerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 use Totalcan\DocumancerBundle\Model\Wizard;
 use Totalcan\DocumancerBundle\Entity\Client;
@@ -25,7 +26,40 @@ class WizardController extends Controller
        ));
     }
 
-    public function clientAction()
+    public function previewAction()
+    {
+        $session = $this->get('session');
+        $em = $this->getDoctrine()->getManager();
+        $design1 = $em->getRepository('TotalcanDocumancerBundle:Design')->find($session->get('designId'));
+        $client1 = $em->getRepository('TotalcanDocumancerBundle:Client')->find($session->get('clientId'));
+        $template1 = $em->getRepository('TotalcanDocumancerBundle:Template')->find($session->get('templateId'));
+
+        $design = $design1->getDesign();
+        $template = $template1->getTemplate();
+
+        $data = array();
+        $var = json_decode($template1->getVariables(), 1);
+        foreach ( $var as $key => $val) {
+            $data[$key] = $val;
+        }
+
+        foreach (json_decode($client1->getVariables(), 1) as $key => $val) {
+            $data[$key] = $val;
+        }
+
+        $env = new \Twig_Environment(new \Twig_Loader_String());
+        $data['TEMPLATE'] = $env->render( $template, $data);
+
+        foreach (json_decode($design1->getVariables(), 1) as $key => $val) {
+            $data[$key] = $val;
+        }
+
+        $html = $env->render( $design, $data);
+
+        return new Response($html);
+    }
+
+    public function clientAction($ajax)
     {
         $this->get('session')->set('clientId', '0');
 
@@ -53,7 +87,9 @@ class WizardController extends Controller
         $engine = $this->container->get('templating');
         $clientForm = $engine->render('TotalcanDocumancerBundle:Wizard:clientForm.html.twig', array( 'form' => $form->createView()));
 
-        return $this->render('TotalcanDocumancerBundle:Wizard:clientSelector.html.twig', array(
+        $sel = ($ajax == 'ajax') ? 'Selector' : '';
+
+        return $this->render('TotalcanDocumancerBundle:Wizard:client'.$sel.'.html.twig', array(
             'clientForm' => $clientForm,
             'clients' => $clients,
        ));
@@ -97,7 +133,7 @@ class WizardController extends Controller
     }
 
 
-    public function designAction()
+    public function designAction($ajax)
     {
         $this->get('session')->set('designId', '0');
 
@@ -125,7 +161,9 @@ class WizardController extends Controller
         $engine = $this->container->get('templating');
         $designForm = $engine->render('TotalcanDocumancerBundle:Wizard:designForm.html.twig', array( 'form' => $form->createView()));
 
-        return $this->render('TotalcanDocumancerBundle:Wizard:designSelector.html.twig', array(
+        $sel = ($ajax == 'ajax') ? 'Selector' : '';
+
+        return $this->render('TotalcanDocumancerBundle:Wizard:design'.$sel.'.html.twig', array(
             'designForm' => $designForm,
             'designs' => $designs,
        ));
@@ -168,7 +206,7 @@ class WizardController extends Controller
        ));
     }
 
-    public function templateAction()
+    public function templateAction($ajax)
     {
         $this->get('session')->set('templateId', '0');
 
@@ -196,7 +234,9 @@ class WizardController extends Controller
         $engine = $this->container->get('templating');
         $templateForm = $engine->render('TotalcanDocumancerBundle:Wizard:templateForm.html.twig', array( 'form' => $form->createView()));
 
-        return $this->render('TotalcanDocumancerBundle:Wizard:templateSelector.html.twig', array(
+        $sel = ($ajax == 'ajax') ? 'Selector' : '';
+
+        return $this->render('TotalcanDocumancerBundle:Wizard:template'.$sel.'.html.twig', array(
             'templateForm' => $templateForm,
             'templates' => $templates,
        ));

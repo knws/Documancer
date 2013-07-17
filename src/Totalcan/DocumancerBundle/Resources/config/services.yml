@@ -18,9 +18,6 @@ services:
     form.type.client:
         class: Totalcan\DocumancerBundle\Form\ClientType
         arguments: ["@security.context"]
-    form.type.clientAjax:
-        class: Totalcan\DocumancerBundle\Form\ClientAjaxType
-        arguments: ["@security.context"]
     form.type.user:
         class: Totalcan\DocumancerBundle\Form\UserType
         arguments: ["@security.context"]

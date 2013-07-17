@@ -240,9 +240,17 @@ class Design
     }
 
     /**
-     * @ORM\PreUpdate
+     * @ORM\PrePersist
      */
     public function setUpdatedValue()
+    {
+        $this->updated = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdated2Value()
     {
         $this->updated = new \DateTime();
     }

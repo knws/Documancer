@@ -3,6 +3,20 @@
 {% block content %}
 
 {% include "TotalcanDocumancerBundle:Wizard:designSelector.html.twig" %}
-{% include "TotalcanDocumancerBundle:Wizard:templateSelector.html.twig" %}
-{% include "TotalcanDocumancerBundle:Wizard:clientSelector.html.twig" %}
+{% if app.session.get('clientId') == 0 %}
+    {{ render(controller('TotalcanDocumancerBundle:Wizard:client', { 'ajax': 'ajax' })) }}
+{% else %}
+    {{ render(controller('TotalcanDocumancerBundle:Wizard:clientId', { 'id': app.session.get('clientId'), 'ajax': 'ajax' })) }}
+{% endif %}
+
+{% if app.session.get('templateId') == 0 %}
+    {{ render(controller('TotalcanDocumancerBundle:Wizard:template', { 'ajax': 'ajax' })) }}
+{% else %}
+    {{ render(controller('TotalcanDocumancerBundle:Wizard:templateId', { 'id': app.session.get('templateId'), 'ajax': 'ajax' })) }}
+{% endif %}
+
+{% if app.session.get('templateId') > 0 and app.session.get('clientId') > 0 and app.session.get('designId') > 0 %}
+    Предпросмотр документа.<br>
+    Создать документ.<br>
+{% endif %}
 {% endblock %}
