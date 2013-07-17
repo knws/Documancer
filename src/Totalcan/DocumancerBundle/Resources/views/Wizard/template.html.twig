@@ -14,8 +14,6 @@
     {{ render(controller('TotalcanDocumancerBundle:Wizard:designId', { 'id': app.session.get('designId'), 'ajax': 'ajax' })) }}
 {% endif %}
 
-{% if app.session.get('templateId') > 0 and app.session.get('clientId') > 0 and app.session.get('designId') > 0 %}
-    Предпросмотр документа.<br>
-    Создать документ.<br>
-{% endif %}
+{% include "TotalcanDocumancerBundle:Wizard:save.html.twig" %}
+
 {% endblock %}

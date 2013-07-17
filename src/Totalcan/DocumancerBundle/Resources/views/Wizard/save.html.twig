@@ -1,0 +1,16 @@
+{% if app.session.get('templateId') > 0 and app.session.get('clientId') > 0 and app.session.get('designId') > 0 %}
+    <a class="btn btn-info" href="{{ path('wizard_preview')}}" target="_blank"><i class="icon-search icon-white"></i> Предпросмотр документа.</a><br><br>
+
+    Назовите документ:<br>
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <div class="input-append">
+            <form action="{{ path('wizard_save')}}">
+            <input type=text id="documentTitleButton">
+            <button class="btn btn-success" id="saveDocumetButton"><i class="icon-ok icon-white"></i> Создать документ</button>
+            </form>
+            </div>
+        </div>
+    </div>
+
+{% endif %}

@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Totalcan\DocumancerBundle\Model\Wizard;
 use Totalcan\DocumancerBundle\Entity\Client;
+use Totalcan\DocumancerBundle\Entity\Document;
 use Totalcan\DocumancerBundle\Entity\Design;
 use Totalcan\DocumancerBundle\Entity\Template;
 
@@ -57,6 +58,48 @@ class WizardController extends Controller
         $html = $env->render( $design, $data);
 
         return new Response($html);
+    }
+
+    public function saveAction()
+    {
+        $session = $this->get('session');
+        $em = $this->getDoctrine()->getManager();
+
+        $design1 = $em->getRepository('TotalcanDocumancerBundle:Design')->find($session->get('designId'));
+        $client1 = $em->getRepository('TotalcanDocumancerBundle:Client')->find($session->get('clientId'));
+        $template1 = $em->getRepository('TotalcanDocumancerBundle:Template')->find($session->get('templateId'));
+
+        $design = $design1->getDesign();
+        $template = $template1->getTemplate();
+
+        $data = array();
+        $var = json_decode($template1->getVariables(), 1);
+        foreach ( $var as $key => $val) {
+            $data[$key] = $val;
+        }
+
+        foreach (json_decode($client1->getVariables(), 1) as $key => $val) {
+            $data[$key] = $val;
+        }
+
+        $env = new \Twig_Environment(new \Twig_Loader_String());
+        $data['TEMPLATE'] = $env->render( $template, $data);
+
+        foreach (json_decode($design1->getVariables(), 1) as $key => $val) {
+            $data[$key] = $val;
+        }
+
+        $document = new Document();
+        $document->setVariables(json_encode($data));
+        $document->setTemplateId($template1);
+        $document->setClientId($client1);
+        $document->setDesignId($design1);
+        $document->setTemplate($design);
+        $document->setTitle('test save');
+
+        $em->persist($document);
+        $em->flush();
+        return $this->redirect($this->generateUrl('document_list'));
     }
 
     public function clientAction($ajax)

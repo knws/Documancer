@@ -163,6 +163,10 @@ wizard_preview:
     pattern:  /wizard/preview
     defaults: { _controller: TotalcanDocumancerBundle:Wizard:preview }
 
+wizard_save:
+    pattern:  /wizard/save
+    defaults: { _controller: TotalcanDocumancerBundle:Wizard:save }
+
 wizard_client:
     pattern:  /wizard/client{ajax}
     defaults: { _controller: TotalcanDocumancerBundle:Wizard:client, ajax: asd }
