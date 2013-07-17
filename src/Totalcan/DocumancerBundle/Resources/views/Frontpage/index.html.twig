@@ -83,6 +83,16 @@ border-radius: 6px;
               <button type="submit" class="btn">Sign in</button>
             </form>
             {% endif %}
+               <script type="text/javascript">
+		var BRAVOREGCOM = {
+			'auth_url': '{{ path('login')}}',
+			'user_id': 0
+		};
+	</script>
+	<link rel="stylesheet" type="text/css" href="http://bravoreg.com/widget/css/widget.css" />
+	<script type="text/javascript" src="http://bravoreg.com/widget/js/widget.js"></script>
+        <div class="bravoreg"><noindex><noscript>Ваш браузер не поддерживает js, вы не сможете авторизоваться</noscript></noindex></div>
+	
           </div><!--/.nav-collapse -->
         </div>
       </div>

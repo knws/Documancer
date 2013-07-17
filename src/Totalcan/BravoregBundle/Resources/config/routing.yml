@@ -1,0 +1,3 @@
+totalcan_bravoreg_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: TotalcanBravoregBundle:Default:index }

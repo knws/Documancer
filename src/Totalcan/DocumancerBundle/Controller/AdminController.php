@@ -13,7 +13,6 @@ class AdminController extends Controller
 {
     public function loginAction(Request $request)
     {
-
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
         } else {

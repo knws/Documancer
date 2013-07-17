@@ -18,6 +18,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Totalcan\DocumancerBundle\TotalcanDocumancerBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+//            new FOS\FacebookBundle\FOSFacebookBundle(),
+            new Totalcan\BravoregBundle\TotalcanBravoregBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

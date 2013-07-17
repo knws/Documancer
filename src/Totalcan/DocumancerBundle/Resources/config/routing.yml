@@ -200,3 +200,8 @@ wizard_template_id:
     defaults: { _controller: TotalcanDocumancerBundle:Wizard:templateId, ajax: asd   }
     requirements:
         id:  \d+
+
+#_security_check:
+#  pattern:  /login_check
+#_security_logout:
+#  pattern:  /logout

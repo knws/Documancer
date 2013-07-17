@@ -30,6 +30,12 @@ security:
             encode_as_base64: false
 
     firewalls:
+#        public:
+#            pattern:   ^/.*
+#            fos_facebook:
+#                app_url: "http://apps.facebook.com/appName/"
+#                server_url: "http://localhost/facebookApp/"
+#            anonymous: true
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false

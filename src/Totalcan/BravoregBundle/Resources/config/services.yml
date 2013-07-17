@@ -1,0 +1,7 @@
+parameters:
+#    totalcan_bravoreg.example.class: Totalcan\BravoregBundle\Example
+
+services:
+#    totalcan_bravoreg.example:
+#        class: %totalcan_bravoreg.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
