@@ -1,0 +1,23 @@
+{% if clients is defined and clients%}
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <div class="input-append">
+            <form>
+            <select name="clientId" id="listClientButton" >
+                {% for client in clients %}
+                    <option value="{{client.id}}">{{client.title}}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-success" id="loadClientButton">Choose</button>
+            <button class="btn btn-warning" id="newClientButton">New client</button>
+            </form>
+            </div>
+        </div>
+    </div>
+
+        {% if clientForm is defined and clientForm%}
+        <div id="newClientForm" class="hide">
+            {{clientForm|raw}}
+        </div>
+        {% endif %}
+    {% endif %}

@@ -1,0 +1,23 @@
+{% if designs is defined and designs%}
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <div class="input-append">
+            <form>
+            <select name="designId" id="listDesignButton" >
+                {% for design in designs %}
+                    <option value="{{design.id}}">{{design.title}}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-success" id="loadDesignButton">Choose</button>
+            <button class="btn btn-warning" id="newDesignButton">New design</button>
+            </form>
+            </div>
+        </div>
+    </div>
+
+        {% if designForm is defined and designForm%}
+        <div id="newDesignForm" class="hide">
+            {{designForm|raw}}
+        </div>
+        {% endif %}
+    {% endif %}

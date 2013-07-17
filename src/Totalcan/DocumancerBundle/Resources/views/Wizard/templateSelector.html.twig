@@ -1,30 +1,6 @@
 {% if app.session.get('templateId') == 0 %}
     <h4>Выбрать текст.</h4>
-    {% if templates is defined and templates%}
-    <div class="btn-toolbar">
-        <div class="btn-group">
-            <div class="input-append">
-            <form>
-            <select name="templateId" id="listTemplateButton" >
-                {% for template in templates %}
-                    <option value="{{template.id}}">{{template.title}}</option>
-                {% endfor %}
-            </select>
-            <button class="btn btn-success" id="loadTemplateButton">Choose</button>
-            </form>
-            </div>
-        </div>
-        <div class="btn-group">
-            <button class="btn btn-warning" id="newTemplateButton">New template</button>
-        </div>
-    </div>
-
-        {% if templateForm is defined and templateForm%}
-        <div id="newTemplateForm" class="hide">
-            {{templateForm|raw}}
-        </div>
-        {% endif %}
-    {% endif %}
+    {% include "TotalcanDocumancerBundle:Wizard:templateSelect.html.twig" %}
     <br>
 {% elseif app.session.get('templateId') > 0 %}
     <h4>Текст документа:</h4>
@@ -32,10 +8,14 @@
     <div class="btn-toolbar">
         <div class="btn-group">
             <button class="btn btn-primary" id="editTemplateButton"><i class="icon-edit icon-white"></i> {{templates.title}}</button>
+            <button class="btn btn-info" id="changeTemplateButton"><i class="icon-retweet icon-white"></i> Сменить</button>
         </div>
     </div>
     <div id="editTemplateForm" class="hide">
         {{templateForm|raw}}
+    </div>
+    <div id="selectTemplateForm" class="hide">
+        {% include "TotalcanDocumancerBundle:Wizard:templateSelect.html.twig" %}
     </div>
     {% endif %}
 

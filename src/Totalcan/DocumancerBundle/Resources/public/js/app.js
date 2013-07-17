@@ -18,6 +18,7 @@ $(document).ready(function(){
 
    $('#newClientButton').click(function(){
        $('#newClientForm').stop().slideToggle();
+       return false;
    });
 
    $('#loadClientButton').click(function(){
@@ -31,6 +32,7 @@ $(document).ready(function(){
 
    $('#newDesignButton').click(function(){
        $('#newDesignForm').stop().slideToggle();
+       return false;
    });
 
    $('#loadDesignButton').click(function(){
@@ -44,6 +46,7 @@ $(document).ready(function(){
 
    $('#newTemplateButton').click(function(){
        $('#newTemplateForm').stop().slideToggle();
+       return false;
    });
 
    $('#loadTemplateButton').click(function(){
@@ -55,5 +58,14 @@ $(document).ready(function(){
        $('#editTemplateForm').stop().slideToggle();
    });
 
+   $('#changeClientButton').click(function(){
+       $('#selectClientForm').stop().slideToggle();
+   });
+   $('#changeDesignButton').click(function(){
+       $('#selectDesignForm').stop().slideToggle();
+   });
+   $('#changeTemplateButton').click(function(){
+       $('#selectTemplateForm').stop().slideToggle();
+   });
 });
 

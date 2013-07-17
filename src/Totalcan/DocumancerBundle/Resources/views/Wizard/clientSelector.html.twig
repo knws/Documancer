@@ -1,33 +1,9 @@
 {% if app.session.get('clientId') == 0 %}
     <h4>Выбрать клиента</h4>
-    {% if clients is defined and clients%}
-    <div class="btn-toolbar">
-        <div class="btn-group">
-            <div class="input-append">
-            <form>
-            <select name="clientId" id="listClientButton" >
-                {% for client in clients %}
-                    <option value="{{client.id}}">{{client.title}}</option>
-                {% endfor %}
-            </select>
-            <button class="btn btn-success" id="loadClientButton">Choose</button>
-            </form>
-            </div>
-        </div>
-        <div class="btn-group">
-            <button class="btn btn-warning" id="newClientButton">New client</button>
-        </div>
-    </div>
-
-        {% if clientForm is defined and clientForm%}
-        <div id="newClientForm" class="hide">
-            {{clientForm|raw}}
-        </div>
-        {% endif %}
-    {% endif %}
+    {% include "TotalcanDocumancerBundle:Wizard:clientSelect.html.twig" %}
     <br>
 {% elseif app.session.get('clientId') > 0 %}
-    <h4>Для клиента:</h4>
+    <h4>Клиент:</h4>
     {% if clientForm is defined and clientForm%}
     <div class="btn-toolbar">
         <div class="btn-group">
@@ -37,6 +13,9 @@
     </div>
     <div id="editClientForm" class="hide">
         {{clientForm|raw}}
+    </div>
+    <div id="selectClientForm" class="hide">
+        {% include "TotalcanDocumancerBundle:Wizard:clientSelect.html.twig" %}
     </div>
     {% endif %}
 

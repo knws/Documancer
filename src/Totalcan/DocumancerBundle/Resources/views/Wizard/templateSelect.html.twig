@@ -1,0 +1,23 @@
+{% if templates is defined and templates%}
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <div class="input-append">
+            <form>
+            <select name="templateId" id="listTemplateButton" >
+                {% for template in templates %}
+                    <option value="{{template.id}}">{{template.title}}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-success" id="loadTemplateButton">Choose</button>
+            <button class="btn btn-warning" id="newTemplateButton">New template</button>
+            </form>
+            </div>
+        </div>
+    </div>
+
+        {% if templateForm is defined and templateForm%}
+        <div id="newTemplateForm" class="hide">
+            {{templateForm|raw}}
+        </div>
+        {% endif %}
+    {% endif %}
