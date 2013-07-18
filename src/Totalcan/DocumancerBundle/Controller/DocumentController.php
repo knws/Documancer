@@ -127,13 +127,11 @@ class DocumentController extends Controller
         for($i=0; $i<=sizeof($documents)-1; $i++) {
             $documentsArray[] = array(
                 'id' => $documents[$i]->getId(),
-                'variables' => $documents[$i]->getVariables(),
-                'template' => $documents[$i]->getTemplate(),
                 'date' => $documents[$i]->getDate(),
                 'userId' => $documents[$i]->getUserId()->getUsername(),
-                'designId' => $documents[$i]->getDesignId()->getTitle(),
-                'templateId' => $documents[$i]->getTemplateId()->getTitle(),
-                'clientId' => $documents[$i]->getClientId()->getVariables(),
+                'designId' => $documents[$i]->getDesignId()->getId(),
+                'templateId' => $documents[$i]->getTemplateId()->getId(),
+                'clientId' => $documents[$i]->getClientId()->getId(),
                 'title' => $documents[$i]->getTitle()
             );
         }

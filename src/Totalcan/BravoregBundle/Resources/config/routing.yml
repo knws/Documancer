@@ -1,3 +1,4 @@
-totalcan_bravoreg_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: TotalcanBravoregBundle:Default:index }
+_security_check:
+    pattern:  /bravoreg/login_check
+_security_logout:
+    pattern:  /bravoreg/logout

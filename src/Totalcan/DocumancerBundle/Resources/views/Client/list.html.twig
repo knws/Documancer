@@ -8,7 +8,6 @@
       <th>#</th>
       <th>doc</th>
       <th>title</th>
-      <th>variables</th>
       <th>date</th>
       {% if is_granted('ROLE_SUPER_ADMIN') %}
         <th>userId</th>
@@ -22,7 +21,6 @@
         <td>{{client.id}}</td>
         <td><a href="{{path('wizard_client_id', {'id': client.id}) }}" class="btn"><i class="icon-file"></i></a></td>
         <td><a href="{{ path('client_edit', {'id': client.id}) }}">{{client.title}}</a></td>
-        <td>{{client.variables}}</td>
         <td>{{client.date|date("d-m-y")}}</td>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
             <td>{{client.userId}}</td>

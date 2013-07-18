@@ -4,7 +4,7 @@
  */
 $(document).ready(function(){
    $('.newDoc').click(function(){
-       window.location = 'http://mancer.ru/app_dev.php/documancer/document/new';
+       window.location = '/app_dev.php/documancer/document/new';
    });
 
    $('#switch_user').click(function(){
@@ -12,7 +12,7 @@ $(document).ready(function(){
    });
 
    $('#switch_user_submit').click(function(){
-       window.location = 'http://mancer.ru/app_dev.php/?_change_user='+$('#switch_user').val();
+       window.location = '/app_dev.php/?_change_user='+$('#switch_user').val();
        return false;
    });
 
@@ -22,7 +22,7 @@ $(document).ready(function(){
    });
 
    $('#loadClientButton').click(function(){
-       window.location = 'http://mancer.ru/app_dev.php/wizard/client/'+$('#listClientButton').val();
+       window.location = '/app_dev.php/wizard/client/'+$('#listClientButton').val();
        return false;
    });
 
@@ -36,7 +36,7 @@ $(document).ready(function(){
    });
 
    $('#loadDesignButton').click(function(){
-       window.location = 'http://mancer.ru/app_dev.php/wizard/design/'+$('#listDesignButton').val();
+       window.location = '/app_dev.php/wizard/design/'+$('#listDesignButton').val();
        return false;
    });
 
@@ -50,7 +50,7 @@ $(document).ready(function(){
    });
 
    $('#loadTemplateButton').click(function(){
-       window.location = 'http://mancer.ru/app_dev.php/wizard/template/'+$('#listTemplateButton').val();
+       window.location = '/app_dev.php/wizard/template/'+$('#listTemplateButton').val();
        return false;
    });
 

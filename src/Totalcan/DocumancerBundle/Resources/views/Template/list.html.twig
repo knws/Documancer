@@ -8,8 +8,6 @@
       <th>#</th>
       <th>doc</th>
       <th>title</th>
-      <th>variables</th>
-      <th>template</th>
       <th>date</th>
       {% if is_granted('ROLE_SUPER_ADMIN') %}
         <th>userId</th>
@@ -22,8 +20,6 @@
         <td>{{template.id}}</td>
         <td><a href="{{path('wizard_template_id', {'id': template.id}) }}" class="btn"><i class="icon-file"></i></a></td>
         <td><a href="{{ path('template_edit', {'id': template.id}) }}">{{template.title}}</a></td>
-        <td>{{template.variables}}</td>
-        <td>{{template.template}}</td>
         <td>{{template.date|date("d-m-y")}}</td>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
             <td>{{template.userId}}</td>

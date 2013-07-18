@@ -39,4 +39,9 @@ class AdminController extends Controller
     {
         return $this->render('TotalcanDocumancerBundle:Admin:index.html.twig');
     }
+
+    public function securedAction()
+    {
+        return $this->render('TotalcanDocumancerBundle:Admin:index.html.twig');
+    }
 }

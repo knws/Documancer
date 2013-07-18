@@ -9,8 +9,6 @@
       <th>doc</th>
       <th>title</th>
       <th>date</th>
-      <th>design</th>
-      <th>variables</th>
       {% if is_granted('ROLE_SUPER_ADMIN') %}
         <th>userId</th>
       {% endif %}
@@ -23,8 +21,6 @@
         <td><a href="{{path('wizard_design_id', {'id': design.id}) }}" class="btn"><i class="icon-file"></i></a></td>
         <td><a href="{{ path('design_edit', {'id': design.id}) }}">{{design.title}}</a></td>
         <td>{{design.date|date("d-m-y")}}</td>
-        <td>{{design.design}}</td>
-        <td>{{design.variables}}</td>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
             <td>{{design.userId}}</td>
         {% endif %}

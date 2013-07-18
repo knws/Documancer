@@ -54,7 +54,6 @@ class DesignController extends Controller
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
-
             if ($form->isValid()) {
 
                 $em = $this->getDoctrine()
