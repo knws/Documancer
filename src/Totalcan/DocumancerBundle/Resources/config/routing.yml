@@ -1,7 +1,3 @@
-_facebook_secured:
-    pattern: /secured/
-    defaults: { _controller: TotalcanDocumancerBundle:Admin:secured }
-
 admin:
     pattern:  /admin
     defaults: { _controller: TotalcanDocumancerBundle:Admin:index }

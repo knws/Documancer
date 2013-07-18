@@ -73,9 +73,3 @@ knp_snappy:
         enabled:    true
         binary:     /usr/bin/wkhtmltoimage
         options:    []
-totalcan_bravoreg:
-    alias:  facebook
-    app_id: 123456879
-    secret: s3cr3t
-    cookie: true
-    permissions: [email, user_birthday, user_location]

@@ -1,7 +1,3 @@
-totalcan_bravoreg:
-    resource: "@TotalcanBravoregBundle/Resources/config/routing.yml"
-    prefix:   /
-
 totalcan_documancer:
     resource: "@TotalcanDocumancerBundle/Resources/config/routing.yml"
     prefix:   /
