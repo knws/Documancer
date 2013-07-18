@@ -1,7 +1,7 @@
 security:
     access_control:
-        - { path: ^/admin,  roles: ROLE_ADMIN }
-        - { path: ^/,       roles: ROLE_USER }
+        - { path: ^/admin12,  roles: ROLE_ADMIN }
+        - { path: ^/user,       roles: ROLE_USER } # todo
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -19,7 +19,7 @@ security:
                     user: { password: ed9cc91baba23bba9a3ff37a259b9262c969e767, roles: [ 'ROLE_USER' ] }
                     admin: { password: 833230111ecfc31e816f37b0dd91b1b9ae28ce2f, roles: [ 'ROLE_SUPER_ADMIN' ] }
         user_db:
-            entity: { class: Totalcan\DocumancerBundle\Entity\User, property: username }
+            entity: { class: Totalcan\DocumancerBundle\Entity\User, property: email }
 
     encoders:
         Symfony\Component\Security\Core\User\User:
@@ -43,10 +43,14 @@ security:
 
         secured_area:
             switch_user: { role: ROLE_SUPER_ADMIN, parameter: _change_user }
-            pattern:    ^/
+            pattern:    ^/.*
             form_login:
                 check_path: login_check
                 login_path: login
+#                post_only: false
+#                username_parameter: _username
+#                password_parameter: _password
+
             logout:
                 path:   logout
                 target: homepage

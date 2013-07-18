@@ -4,15 +4,18 @@ admin:
 homepage:
     pattern:  /
     defaults: { _controller: TotalcanDocumancerBundle:Frontpage:index }
+super_auth:
+    pattern:  /super_auth
+    defaults: { _controller: TotalcanDocumancerBundle:Admin:superAuth }
 
 login:
     pattern:  /login
     defaults: { _controller: TotalcanDocumancerBundle:Admin:login }
 login_check:
-    pattern:  /login_check
+    pattern: /login_check
     defaults: { _controller: TotalcanDocumancerBundle:Admin:securityCheck }
 logout:
-    pattern:  /logout
+    pattern: /logout
     defaults: { _controller: TotalcanDocumancerBundle:Admin:logout }
 
 
@@ -200,8 +203,3 @@ wizard_template_id:
     defaults: { _controller: TotalcanDocumancerBundle:Wizard:templateId, ajax: asd   }
     requirements:
         id:  \d+
-
-#_security_check:
-#  pattern:  /login_check
-#_security_logout:
-#  pattern:  /logout
