@@ -19,6 +19,9 @@ background-color: #f5f5f5;
 -moz-border-radius: 6px;
 border-radius: 6px;
 }
+textarea {
+    height: 150px;
+}
 </style>
 {% endblock %}
 
@@ -71,29 +74,7 @@ border-radius: 6px;
               {% endif %}
               {% endif %}
             </ul>
-            {% if app.user.username is defined and app.user.username%}
-               <a href="#" class="btn">{{ app.user.username }}</a> <a class="btn btn-warning" href="{{ path("logout") }}">Logout</a>
-              {# {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-                    <a class="btn btn-info" href="{{ path('homepage', {_change_user: '_exit'}) }}">Admin</a>
-                {% endif %}#}
-            {% else %}
-            <form class="navbar-form pull-right" action="{{ path("login_check") }}" method="post" id="login">
-              <input class="span2" type="text" placeholder="Email" id="username" name="_username" value="" >
-              <input class="span2" type="password" placeholder="Password" id="password" name="_password" >
-              <button type="submit" class="btn">Sign in</button>
-            </form>
-            {% endif %}
-               {#
-               <script type="text/javascript">
-		var BRAVOREGCOM = {
-			'auth_url': '{{ path('super_auth')}}',
-			'user_id': 0
-		};
-	</script>
-	<link rel="stylesheet" type="text/css" href="http://bravoreg.com/widget/css/widget.css" />
-	<script type="text/javascript" src="http://bravoreg.com/widget/js/widget.js"></script>
-        <div class="bravoreg"><noindex><noscript>Ваш браузер не поддерживает js, вы не сможете авторизоваться</noscript></noindex></div>
-        #}
+               <div class="bravoreg"><noindex><noscript>Ваш браузер не поддерживает js, вы не сможете авторизоваться</noscript></noindex></div>
           </div><!--/.nav-collapse -->
         </div>
       </div>

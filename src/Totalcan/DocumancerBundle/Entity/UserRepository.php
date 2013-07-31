@@ -96,5 +96,22 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 //            return null;
 //        }
 //    }
+    public function loadUserByUsername2($username)
+    {
+        $q = $this
+            ->createQueryBuilder('u')
+            ->where('u.exId = :exId')
+            ->setParameter('exId', $username)
+            ->getQuery();
 
+        try {
+            // The Query::getSingleResult() method throws an exception
+            // if there is no record matching the criteria.
+            $user = $q->getSingleResult();
+        } catch (NoResultException $e) {
+            return null;
+        }
+
+        return $user;
+    }
 }

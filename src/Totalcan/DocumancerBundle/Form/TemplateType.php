@@ -21,9 +21,13 @@ class TemplateType extends AbstractType
         $builder
             ->add('title')
             ->add('template')
-            ->add('variables')
+            ->add('variables', 'textarea', array(
+                'required' => false,
+                'label' => 'Переменные',
+                'trim' => false,
+            ))
             //->add('date')
-            ->add('userId', 'entity', array('class'=>'Totalcan\DocumancerBundle\Entity\User', 'property'=>'username' ))
+            //->add('userId', 'entity', array('class'=>'Totalcan\DocumancerBundle\Entity\User', 'property'=>'username' ))
         ;
     }
 

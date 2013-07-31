@@ -1,10 +1,31 @@
 {% extends "TotalcanDocumancerBundle:Frontpage:index.html.twig" %}
-
+{% block title %}
+Создание текста
+{% endblock %}
 {% block content %}
-<a class="btn btn-primary" href="{{ path('template_list') }}">Back to list</a><br><br>
-<form class="form-horizontal"  action="{{ path('template_new') }}" method="post" {{ form_enctype(form) }}>
-  <div class="control-group">
+<form class="form-horizontal"  action="{{ path('template_new') }}" method="post" {{ form_enctype(form) }} id="superForm">
+<div class="controls">
 
+    <a class="btn btn-primary" href="{{ path('wizard') }}">В начало</a>
+    <a class="btn btn-primary" href="{{ path('template_list') }}">Список текстов</a>
+    <button type="submit" class="btn btn-success">Создать</button>
+</div>
+        <br>
+  <div class="control-group">
+    {{ form_label(form.title, 'Название текста') }}
+    {{ form_widget(form.title, {'attr': {'class': 'span6'}}) }}
+
+    {{ form_label(form.template, 'Текст документа') }}
+    <div class="btn-group">
+        <button class="btn" id="fontBold">Bold</button>
+        <button class="btn" id="font12">12</button>
+        <button class="btn" id="font14">14</button>
+        <button class="btn" id="font16">16</button>
+        <button class="btn" id="fontBr">br</button>
+
+    </div>
+    <br>
+    {{ form_widget(form.template, {'attr': {'class': 'span8'}}) }}
     {{ form_errors(form) }}
     {{ form_widget(form) }}
       <br>

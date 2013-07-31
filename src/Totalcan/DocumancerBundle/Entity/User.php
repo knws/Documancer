@@ -46,6 +46,10 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+    /**
+    * @ORM\Column(type="integer")
+    */
+   private $exId;
 
     /**
      * @inheritDoc
@@ -113,7 +117,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="variables", type="text")
+     * @ORM\Column(name="variables", type="text", nullable=true)
      */
     private $variables;
 
@@ -542,17 +546,40 @@ class User implements UserInterface, \Serializable
     public function setCompanyId(\Totalcan\DocumancerBundle\Entity\Company $companyId = null)
     {
         $this->companyId = $companyId;
-    
+
         return $this;
     }
 
     /**
      * Get companyId
      *
-     * @return \Totalcan\DocumancerBundle\Entity\Company 
+     * @return \Totalcan\DocumancerBundle\Entity\Company
      */
     public function getCompanyId()
     {
         return $this->companyId;
+    }
+
+    /**
+     * Set exId
+     *
+     * @param integer $exId
+     * @return User
+     */
+    public function setExId($exId)
+    {
+        $this->exId = $exId;
+
+        return $this;
+    }
+
+    /**
+     * Get exId
+     *
+     * @return integer
+     */
+    public function getExId()
+    {
+        return $this->exId;
     }
 }

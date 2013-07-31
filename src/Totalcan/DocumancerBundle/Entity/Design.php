@@ -254,4 +254,27 @@ class Design
     {
         $this->updated = new \DateTime();
     }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     * @return Design
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime 
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
 }

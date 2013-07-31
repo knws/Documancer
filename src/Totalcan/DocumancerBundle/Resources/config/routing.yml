@@ -5,13 +5,16 @@ homepage:
     pattern:  /
     defaults: { _controller: TotalcanDocumancerBundle:Frontpage:index }
 super_auth:
-    pattern:  /super_auth
+    pattern:  /super/login
     defaults: { _controller: TotalcanDocumancerBundle:Admin:superAuth }
+super_logout:
+    pattern:  /super/logout
+    defaults: { _controller: TotalcanDocumancerBundle:Admin:superLogOut }
 
 login:
     pattern:  /login
     defaults: { _controller: TotalcanDocumancerBundle:Admin:login }
-login_check:
+security_check:
     pattern: /login_check
     defaults: { _controller: TotalcanDocumancerBundle:Admin:securityCheck }
 logout:

@@ -255,4 +255,27 @@ class Template
     {
         $this->updated = new \DateTime();
     }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     * @return Template
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime 
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
 }

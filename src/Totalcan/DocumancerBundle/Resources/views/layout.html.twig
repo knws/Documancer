@@ -37,6 +37,18 @@
 </div>
 {% endblock %}
 </footer>
+
+<script type="text/javascript">
+    var BRAVOREGCOM = {
+            'auth_url': '{{ path('super_auth')}}',
+            'user_id': {% if app.user.exId is defined and app.user.exId%}{{app.user.exId}}{%else%}0{% endif %},
+            'callback': function(){ $('.signin').addClass('btn btn-success'); $('.bravoreg-link').addClass('btn btn-warning'); $('.signout').addClass('btn btn-danger'); $('.bravoreg b').addClass('btn'); $('.bravoreg').first().addClass('btn-group');},
+            'signout_url': '{{ path('super_logout')}}',
+            'auto': false
+        };
+</script>
+<link rel="stylesheet" type="text/css" href="http://bravoreg.com/widget/css/widget.css" />
+<script type="text/javascript" src="http://bravoreg.com/widget/js/widget.js"></script>
 <script src="{{ asset('bundles/totalcandocumancer/js/jquery-2.0.3.min.js') }}"></script>
 <script src="{{ asset('bundles/totalcandocumancer/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('bundles/totalcandocumancer/js/app.js') }}"></script>

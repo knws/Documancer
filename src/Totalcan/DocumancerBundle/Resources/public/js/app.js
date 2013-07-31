@@ -2,7 +2,44 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+function wrap(tag) {
+    var sel, range;
+    var selectedText;
+    if (window.getSelection) {
+        sel = window.getSelection();
+
+        if (sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            selectedText = range.toString();
+            range.deleteContents();
+            range.insertNode(document.createTextNode('[' + tag + ']' + selectedText + '[/' + tag + ']'));
+        }
+    }
+    else if (document.selection && document.selection.createRange) {
+        range = document.selection.createRange();
+        selectedText = document.selection.createRange().text + "";
+        range.text = '[' + tag + ']' + selectedText + '[/' + tag + ']';
+    }
+
+}
+
 $(document).ready(function(){
+
+$.fn.selectRange = function(start, end) {
+    return this.each(function() {
+        if(this.setSelectionRange) {
+            this.focus();
+            this.setSelectionRange(start, end);
+        } else if(this.createTextRange) {
+            var range = this.createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', end);
+            range.moveStart('character', start);
+            range.select();
+        }
+    });
+};
+
    $('.newDoc').click(function(){
        window.location = '/app_dev.php/documancer/document/new';
    });
@@ -67,5 +104,9 @@ $(document).ready(function(){
    $('#changeTemplateButton').click(function(){
        $('#selectTemplateForm').stop().slideToggle();
    });
+
+   $('#fontBold').click(function(){
+       
+    });
 });
 
