@@ -50,6 +50,8 @@ security:
                 post_only: false
                 username_parameter: _username
                 password_parameter: _password
+                always_use_default_target_path: true
+                default_target_path: homepage
 
             logout:
                 path:   logout
