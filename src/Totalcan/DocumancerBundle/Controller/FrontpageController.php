@@ -13,7 +13,7 @@ class FrontpageController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('TotalcanDocumancerBundle:Wizard:wizard.html.twig', array( 
+        return $this->render('TotalcanDocumancerBundle:Wizard:wizard.html.twig', array(  
         ));
     }
 }
