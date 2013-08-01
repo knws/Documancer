@@ -26,19 +26,8 @@ class ClientController extends Controller
             $clients = $em->getRepository('TotalcanDocumancerBundle:Client')->findByUserId($usr->getId());
         }
 
-        for($i=0; $i<=sizeof($clients)-1; $i++) {
-            $clientsArray[] = array(
-                'id' => $clients[$i]->getId(),
-                'title' => $clients[$i]->getTitle(),
-                'variables' => $clients[$i]->getVariables(),
-                'date' => $clients[$i]->getDate(),
-                'userId' => $clients[$i]->getUserId()->getUsername(),
-                'exId' => $clients[$i]->getExId(),
-            );
-        }
-
         return $this->render('TotalcanDocumancerBundle:Client:list.html.twig', array(
-            'clients' => $clientsArray,
+            'clients' => $clients,
             'users' => $users
        ));
     }

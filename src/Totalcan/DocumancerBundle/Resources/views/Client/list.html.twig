@@ -23,7 +23,7 @@
         <td><a href="{{ path('client_edit', {'id': client.id}) }}">{{client.title}}</a></td>
         <td>{{client.date|date("d-m-y")}}</td>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
-            <td>{{client.userId}}</td>
+            <td>{{client.userId.username}}</td>
         {% endif %}
         <td>{{client.exId}}</td>
         <td><a class="btn btn-danger" href="{{path('client_delete', {'id': client.id})}}">del</a></td>

@@ -17,32 +17,10 @@ class UserController extends Controller
 
         if (true === $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
             $userLists = $em->getRepository('TotalcanDocumancerBundle:User')->findAll();
-
-
-        } else {
-            $usr= $this->get('security.context')->getToken()->getUser();
-            $userLists = $em->getRepository('TotalcanDocumancerBundle:User')->findByUserId($usr->getId());
-        }
-
-        $userListsArray = array();
-        for($i=0; $i<=sizeof($userLists)-1; $i++) {
-            $userListsArray[] = array(
-                'id' => $userLists[$i]->getId(),
-                'username' => $userLists[$i]->getUsername(),
-                'variables' => $userLists[$i]->getVariables(),
-                'date' => $userLists[$i]->getDate(),
-                'email' => $userLists[$i]->getEmail()
-            );
-
-            $role = $userLists[$i]->getRoles();
-
-            for($j=0; $j<=sizeof($role)-1;  $j++) {
-               $userListsArray[$i]['roles'][$j] = $role[$j]->getName();
-            }
         }
 
         return $this->render('TotalcanDocumancerBundle:User:list.html.twig', array(
-            'userLists' => $userListsArray,
+            'userLists' => $userLists,
             'users' => $users
        ));
     }

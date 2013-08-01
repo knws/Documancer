@@ -124,20 +124,8 @@ class DocumentController extends Controller
             $documents = $em->getRepository('TotalcanDocumancerBundle:Document')->findByUserId($usr->getId());
         }
 
-        for($i=0; $i<=sizeof($documents)-1; $i++) {
-            $documentsArray[] = array(
-                'id' => $documents[$i]->getId(),
-                'date' => $documents[$i]->getDate(),
-                'userId' => $documents[$i]->getUserId()->getUsername(),
-                'designId' => $documents[$i]->getDesignId()->getId(),
-                'templateId' => $documents[$i]->getTemplateId()->getId(),
-                'clientId' => $documents[$i]->getClientId()->getId(),
-                'title' => $documents[$i]->getTitle()
-            );
-        }
-
         return $this->render('TotalcanDocumancerBundle:Document:list.html.twig', array(
-            'documents' => $documentsArray,
+            'documents' => $documents,
             'users' => $users
        ));
     }

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 
 use Totalcan\DocumancerBundle\Entity\User;
+use Totalcan\DocumancerBundle\Entity\Role;
 
 class AdminController extends Controller
 {
@@ -32,7 +33,7 @@ class AdminController extends Controller
 
     function securityCheckAction()
     {
-        
+
     }
 
     public function indexAction()
@@ -71,13 +72,14 @@ class AdminController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $user = $em->getRepository('TotalcanDocumancerBundle:User')->loadUserByUsername2($request->query->get('user_id'));
+            $role = $em->getRepository('TotalcanDocumancerBundle:Role')->find(4);
 
             if($user!=null) {
                 $user->setPassword($token);
                 $user->setUsername($result->user->officialName);
                 $user->setEmail($result->user->email);
                 $user->setExId($request->query->get('user_id'));
-
+                $user->addRole($role);
                 $em->persist($user);
                 $em->flush();
             } else {
@@ -86,7 +88,7 @@ class AdminController extends Controller
                 $user->setPassword($token);
                 $user->setEmail($result->user->email);
                 $user->setExId($request->query->get('user_id'));
-
+                $user->addRole($role);
                 $em->persist($user);
                 $em->flush();
             }

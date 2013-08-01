@@ -25,19 +25,8 @@ class DesignController extends Controller
             $designs = $em->getRepository('TotalcanDocumancerBundle:Design')->findByUserId($usr->getId());
         }
 
-        for($i=0; $i<=sizeof($designs)-1; $i++) {
-            $designsArray[] = array(
-                'id' => $designs[$i]->getId(),
-                'variables' => $designs[$i]->getVariables(),
-                'design' => $designs[$i]->getDesign(),
-                'date' => $designs[$i]->getDate(),
-                'userId' => $designs[$i]->getUserId()->getUsername(),
-                'title' => $designs[$i]->getTitle()
-            );
-        }
-
         return $this->render('TotalcanDocumancerBundle:Design:list.html.twig', array(
-            'designs' => $designsArray,
+            'designs' => $designs,
             'users' => $users
        ));
     }

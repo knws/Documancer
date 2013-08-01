@@ -25,24 +25,8 @@ class TemplateController extends Controller
             $templates = $em->getRepository('TotalcanDocumancerBundle:Template')->findByUserId($usr->getId());
         }
 
-        for($i=0; $i<=sizeof($templates)-1; $i++) {
-            $templatesArray[] = array(
-                'id' => $templates[$i]->getId(),
-                'variables' => $templates[$i]->getVariables(),
-                'template' => $templates[$i]->getTemplate(),
-                'date' => $templates[$i]->getDate(),
-                'title' => $templates[$i]->getTitle()
-            );
-
-            if($templates[$i]->getUserId()!=null) {
-                $templatesArray[$i]['userId'] = $templates[$i]->getUserId()->getUsername();
-            } else {
-                $templatesArray[$i]['userId'] = 'null';
-            }
-        }
-
         return $this->render('TotalcanDocumancerBundle:Template:list.html.twig', array(
-            'templates' => $templatesArray,
+            'templates' => $templates,
             'users' => $users
        ));
     }

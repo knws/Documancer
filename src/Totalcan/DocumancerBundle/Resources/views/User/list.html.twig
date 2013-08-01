@@ -22,7 +22,7 @@
         <td>
         {% if userList.roles is defined and userList.roles %}
         {% for role in userList.roles %}
-            {{ role }}{% if not loop.last %}, {% endif %}
+            {{ role.name }}{% if not loop.last %}, {% endif %}
         {% endfor %}
         {% endif %}
         </td>

@@ -22,7 +22,7 @@
         <td><a href="{{ path('design_edit', {'id': design.id}) }}">{{design.title}}</a></td>
         <td>{{design.date|date("d-m-y")}}</td>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
-            <td>{{design.userId}}</td>
+            <td>{{design.userId.username}}</td>
         {% endif %}
         <td><a class="btn btn-danger" href="{{path('design_delete', {'id': design.id})}}">del</a></td>
     </tr>

@@ -18,7 +18,7 @@
         <td><a href="{{ path('company_edit', {'id': company.id}) }}">{{company.title}}</a></td>
         <td>{{company.date|date("d-m-y")}}</td>
         <td>{{company.variables}}</td>
-        <td>{{company.parent}}</td>
+        <td>{{company.parent.title}}</td>
         <td><a class="btn btn-danger" href="{{path('company_delete', {'id': company.id})}}">del</a></td>
     </tr>
   {% endfor %}

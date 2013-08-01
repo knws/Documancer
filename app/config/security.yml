@@ -1,26 +1,4 @@
 security:
-    access_control:
-        - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/,       role: ROLE_USER }
-
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_COMPANY_OPERATOR:       ROLE_USER
-        ROLE_COMPANY_ADMIN:       [ROLE_USER, ROLE_COMPANY_OPERATOR]
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-
-    providers:
-        chain_provider:
-            chain:
-                providers: [in_memory, user_db]
-        in_memory:
-            memory:
-                users:
-                    user: { password: ed9cc91baba23bba9a3ff37a259b9262c969e767, roles: [ 'ROLE_USER' ] }
-        user_db:
-            entity: { class: Totalcan\DocumancerBundle\Entity\User, property: username }
-
     encoders:
         Symfony\Component\Security\Core\User\User:
             algorithm: sha1
@@ -31,18 +9,39 @@ security:
             iterations: 1
             encode_as_base64: false
 
+    role_hierarchy:
+        ROLE_COMPANY_OPERATOR:       ROLE_USER
+        ROLE_COMPANY_ADMIN:       ROLE_USER
+        ROLE_ADMIN:       [ROLE_USER, ROLE_MANAGER]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_MANAGER]
+
+    providers:
+        chain_provider:
+            chain:
+                providers: [in_memory, user_db]
+        in_memory:
+            memory:
+                users:
+                    tarasss: { password: f90ec1c5bd43711a3f37549d730a11b3df1f28db, roles: [ 'ROLE_SUPER_ADMIN' ] }
+        user_db:
+            entity: { class: Totalcan\DocumancerBundle\Entity\User, property: username }
+
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-
         login:
-            pattern:  ^/login.*
+            pattern:  ^/login$
+            security: false
+        bravoreg:
+            pattern:  ^/super/.*
+            security: false
+        cron:
+            pattern:  ^/import/.*
             security: false
 
         secured_area:
-            switch_user: { role: ROLE_SUPER_ADMIN, parameter: _change_user }
             pattern:    ^/
             form_login:
                 check_path: security_check
@@ -52,9 +51,13 @@ security:
                 password_parameter: _password
                 always_use_default_target_path: true
                 default_target_path: homepage
-
             logout:
                 path:   logout
                 target: homepage
+
+    access_control:
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/,       role: ROLE_USER }
 
 

@@ -25,11 +25,11 @@
         <td><a class="btn" href="{{ path('document_pdf', {'id': document.id}) }}">pdf</a> <a class="btn" href="{{ path('document_jpg', {'id': document.id}) }}">jpg</a></td>
         <td>{{document.date|date("d-m-y")}}</td>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
-            <td>{{document.userId}}</td>
+            <td>{{document.userId.username}}</td>
         {% endif %}
-        <td>{{document.clientId}}</td>
-        <td>{{document.templateId}}</td>
-        <td>{{document.designId}}</td>
+        <td>{{document.clientId.username}}</td>
+        <td>{{document.templateId.title}}</td>
+        <td>{{document.designId.title}}</td>
         <td><a class="btn btn-danger" href="{{path('document_delete', {'id': document.id})}}">del</a></td>
     </tr>
   {% endfor %}

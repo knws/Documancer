@@ -22,7 +22,7 @@
         <td><a href="{{ path('template_edit', {'id': template.id}) }}">{{template.title}}</a></td>
         <td>{{template.date|date("d-m-y")}}</td>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
-            <td>{{template.userId}}</td>
+            <td>{{template.userId.username}}</td>
         {% endif %}
         <td><a class="btn btn-danger" href="{{path('template_delete', {'id': template.id})}}">del</a></td>
     </tr>
